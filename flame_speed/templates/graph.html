@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+{%block title%}Graph{%endblock%}
+{%block content%}
+	<div class="viewTable">		
+    	<table border="1" cellpadding="10" cellspacing="0">    	
+    	{% for entry in mixtures %}
+			<tr>
+				<li><a href="/{{entry.name}}">{{entry.name}}</a></li>
+			</tr>
+    	{% endfor %}	
+    	</table>
+    </div>
+{%endblock%}

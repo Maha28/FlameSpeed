@@ -1,0 +1,266 @@
+@charset "UTF-8";
+
+/*limited reset*/
+html, body, div, section, article, aside, header, hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p, blockquote, address, time, span, em, strong, img, ol, ul, li, figure, canvas, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+a {
+	text-decoration: none;
+}
+
+/*html5 display rule*/
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, nav, menu, nav, section, summary {
+	display: block;
+}
+
+body {
+	background: #ddd;
+	text-align: center;
+	font: 100% Georgia, "Times New Roman", Times, serif;
+}
+
+nav ul, ul.menu {
+	list-style: none;
+}
+
+/* layout styles */
+#wrapper {
+	width: 1100px;
+	margin: 0 auto;
+	padding: 0 50px;
+	text-align:left;
+	position: relative;
+	background: #fff url(../_images/cycle_back.gif) no-repeat top right;
+}
+header#mainHeader {
+	height: 185px;
+}
+section#trailInfo {
+	float: left;
+	width: 600px;
+	padding: 0 10px 0 25px;
+	margin-bottom: 2em;
+}
+aside#trailNews {
+	float: right;
+	width: 450px;
+	margin-bottom: 2em;
+}
+footer#pageFooter {
+	clear: both;
+}
+
+/*-------------presentation styles---------------*/
+
+/*header styles*/
+header#mainHeader {
+	background: url(../_images/logo.gif) no-repeat 25px 0;
+	padding: 75px 0 0 245px;
+	position: relative;
+	border-bottom: 2px solid #7f7f7f;
+	margin-bottom: 1em;
+}
+header#mainHeader h1 span {
+	position: absolute;
+	left: -2000em;
+}
+header#mainHeader nav {
+	position: absolute;
+	left: 225px;
+	top: 0;
+	padding-top: 15px;
+}
+header#mainHeader nav h1{
+	position: absolute;
+	left: -2000em;
+}
+header#mainHeader ul {
+	float: left;
+}
+header#mainHeader ul li {
+	float: left;
+}
+header#mainHeader ul li a{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.2em;
+	color: #000;
+	padding: 0 20px;
+	border-right: 1px solid #000;
+	text-decoration: none;
+}
+header#mainHeader ul li a.last{
+	border: none;
+}
+header#mainHeader ul li a:hover {
+	color: #cb7d20;
+}
+header#mainHeader hgroup h1 {
+	font-size: 6em;
+	color: #7f7f7f;
+	font-weight: normal;
+}
+header#mainHeader hgroup h2 {
+	font-weight: normal;
+	font-size: 2em;
+}
+
+/*trail info section styles*/
+section#trailInfo {
+	border-right: 1px solid #7f7f7f;
+}
+section#trailInfo header p {
+	font-size: .9em;
+	color: #cb7d20;
+}
+section#trailInfo header a {
+	color: #cb7d20;
+}
+section#trailInfo header a:hover {
+	color:#952
+}
+section#trailInfo header h1 {
+	font-weight: normal;
+	font-size: 1.3em;
+	margin-top: 1em;
+}
+section#trailInfo article h1 {
+	font-weight: normal;
+	color: #7f7f7f;
+	font-size: 3em;
+	margin-bottom: .6em;
+}
+section#trailInfo caption {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.4em;
+	text-align: left;
+}
+section#trailInfo caption span {
+	font-size: .6em;
+	font-style: italic;
+	text-align: right;
+	text-transform: lowercase;
+	position: relative;
+	right: 0;
+	top: -1.4em;
+	display: block;
+}
+section#trailInfo table#quickFacts {
+	width: 425px;
+	background: #c3cebc;
+	border: none;
+	margin: .5em 0 1em;
+}
+section#trailInfo table#quickFacts th {
+	width: 100px;
+}
+section#trailInfo table#quickFacts th, section#trailInfo table#quickFacts td {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: .8em;
+	padding-left: 1em;
+	text-align: left;
+	line-height: 3;
+}
+section#trailInfo table#quickFacts tr.alt {
+	background: #e1d8b9;
+}
+section#trailInfo p {
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 1em;
+}
+section#trailInfo h2 {
+	font-size: 1em;
+	margin-top: 1.2em;
+	margin-bottom: 0;
+	color: #000;
+}
+section#trailInfo img{
+	display: block;
+}
+
+/*trail news aside styles*/
+aside#trailNews {
+	font-size: 90%;
+}
+aside#trailNews h1{
+	font-size: 3em;
+	font-weight: normal;
+	color: #7f7f7f;
+	border-bottom: 1px solid #7f7f7f;
+	margin-bottom: .5em;
+}
+aside#trailNews .news {
+	background: #e1d8b9;
+	padding: 1em 1em;
+	margin-bottom: 1.5em;
+}
+aside#trailNews .news h1 {
+	font-size: 2.5em;
+	border: none;
+}
+aside#trailNews .news h2 {
+	font-size: 1.2em;
+	margin-bottom: .2em;
+}
+aside#trailNews .news h3 {
+	font-size: 1.1em;
+	color: #666;
+	font-weight: normal;
+	margin-bottom: .2em;
+}
+aside#trailNews .news p {
+	line-height: 1.8;
+	color: #333;
+	margin-bottom:1em;
+}
+aside#trailNews .news p.pubdate {
+	text-align:right;
+	color: #666;
+	font-size: .9em;
+	font-style: italic;
+}
+aside#trailNews video {
+	margin: .5em 0 1em;
+}
+/*form styles*/
+label {
+	display:block;
+	margin: 1em 0 0;
+}
+input:focus {
+	border: 1px solid #952;
+}
+input[type="number"] {
+	width: 3em;
+}
+input[type="text"], input[type="email"],input[type="url"] {
+	width: 350px;
+	height: 20px;
+}
+textarea {
+	width: 350px;
+	height: 250px;
+	display: block;
+	margin-bottom: 1em;
+}
+/*footer styles*/
+footer#pageFooter {
+	border-top: 2px solid #7f7f7f;
+	padding: 2em;
+}
+footer#pageFooter p {
+	text-align: center;
+	font-style: italic;
+	margin-bottom: 1em;
+	color: #666;
+}
+footer#pageFooter a {
+	text-decoration: none;
+	color:#cb7d20;
+}
+footer#pageFooter a:hover {
+	color: #952;
+}

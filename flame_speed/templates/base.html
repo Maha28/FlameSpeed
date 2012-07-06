@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}{% endblock title %}</title>
+<link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/visualize.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<header id="mainHeader">
+  <hgroup>
+    <h1>Flame Speed</h1>
+  </hgroup>
+    <nav id="mainNav">
+    <h1>Main page navigation</h1>
+    <ul id="siteNav">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/database">Database</a></li>
+      <li><a href="/characteristic">Characteristic</a></li>
+      <li><a href="/reference">Reference</a></li>
+      <li><a href="/mixture">Mixture</a></li>
+      <li><a href="/graph">Graph</a></li>       
+      <li><a href="/search">Search</a></li>
+      </ul>
+  </nav>
+</header>
+  <section id="content">
+  	<header>{% include "messages.html" %}</header>
+    {% block content %}{% endblock content %}
+  </section>
+  <footer id="pageFooter">
+  <p>&copy;copyright 2012 Maha Manoubi</p>
+  <p><a href="#">legal</a> | <a href="#">privacy</a> </p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
+  <head>
+    <title>Hello World avec jQuery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{{ STATIC_URL }}css/visualize.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/visualize_light.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/visualize.js"></script>
+  </head>
+  <body>
+	    <table>
+		<caption>Figure: Flame Speed vs Equivalence ratio</caption>
+		<thead>
+			<tr>
+				<td></td>
+				{% for entry in data %}
+				    <th scope="col">{{entry.value}}</th>
+				{% endfor %}			
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			    <th scope="row">Cantera</th>
+				{% for entry in data %}
+				    <td scope="col">{{entry.speed}}</td>
+				{% endfor %}	
+			</tr>		
+		</tbody>	
+	    </table>
+	    <script type="text/javascript">
+			$('table')
+			   .visualize()
+			   .appendTo('body')
+			   .trigger('visualizeRefresh');
+        </script>	
+  </body>
+</html>

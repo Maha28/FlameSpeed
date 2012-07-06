@@ -1,0 +1,25 @@
+{%extends "base.html"%}
+{%block title%}References{%endblock%}
+{%block content%}
+    <header><h2>View all references</h2></header>
+	<div class="viewTable">
+	<a href="{% url populate_reference %}">Populate Reference</a> </br>
+    	<h3></h3>
+    	<table>
+    		<tr>
+	    		<th>N</th>
+	    		<th>Title</th>
+	    		<th>Authors</th>
+	    		<th>Published Year</th>
+    		</tr>    	
+    	{% for entry in reference %}
+			<tr>
+				<td>{{entry.id_ref}}</td>
+				<td><a href="{{ STATIC_URL }}Papers/Ref{{entry.id_ref}}">{{entry.title}} </a></td>	
+				<td>{{entry.authors}}</td>
+				<td>{{entry.published_year}}</td>
+			</tr>
+    	{% endfor %}	
+    	</table>
+    </div>
+{%endblock%}

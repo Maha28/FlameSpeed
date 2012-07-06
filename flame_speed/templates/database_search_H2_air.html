@@ -1,0 +1,19 @@
+{%extends "base.html"%}
+{%block title%}Database_search{%endblock%}
+{%block content%}
+    <header><h2>View all mixture</h2></header>
+	<div class="viewTable">  		
+    	<form method="post" action="traitement.php">
+		   <p>
+		       Please choose the characteristic:<br />
+		       <input type="radio" name="Characteristic" value="Equivalente_ratio" id="Equivalente_ratio" /> <label for="Equivalente_ratio">Equivalente_ratio</label><br />
+		       <input type="radio" name="Characteristic" value="" id="Concentration_%H2" /> <label for="Concentration_%H2">Concentration_%H2</label><br />
+		       <input type="radio" name="Characteristic" value="Volume_%H2" id="Volume_%H2" /> <label for="Volume_%H2">Volume_%H2</label><br />
+		       <input type="radio" name="Characteristic" value="Pressure" id="Pressure" /> <label for="Pressure">Pressure</label><br />
+		       <input type="radio" name="Characteristic" value="H2/O2_ratio" id="H2/O2_ratio" /> <label for="H2/O2_ratio">H2/O2_ratio</label>
+		   </p>
+		</form>
+    </div>
+{%endblock%}
+
+

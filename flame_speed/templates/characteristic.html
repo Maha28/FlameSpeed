@@ -1,0 +1,28 @@
+{%extends "base.html"%}
+{%block title%}Characteristic{%endblock%}
+{%block content%}
+    <header><h2>View all characteristics</h2></header>
+	<div class="viewTable">	
+    	<table border="1" cellpadding="10" cellspacing="0">
+    		<tr>
+	    		<th>name</th>
+	    		<th>value</th>
+	    		<th>speed</th>
+	    		<th>conditions</th>
+	    		<th>mixture</th>
+    		</tr>    	
+    	{% for entry in characteristics %}
+			<tr>
+				<td>{{entry.name}}</td>
+				<td>{{entry.value}}</td>
+				<td>{{entry.speed}}</td>
+				<td>{{entry.conditions}}</td>
+				<td>{{entry.mixture.name}}</td>
+			</tr>
+    	{% endfor %}	
+    	</table>
+    </div>
+{%endblock%}
+
+
+

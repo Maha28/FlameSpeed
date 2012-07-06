@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+{%block title%}Mixture{%endblock%}
+{%block content%}
+    <header><h2>View all Mixtures</h2></header>
+	<div class="viewTable">
+	<a href="{% url populate_mixture_characteristic %}">Populate Mixture_Characteristic</a> </br>		
+    	<table border="1" cellpadding="10" cellspacing="0">
+    		<tr>
+	    		<th>name</th>
+	    		<th>reference</th>
+    		</tr>    	
+    	{% for entry in mixtures %}
+			<tr>
+				<td>{{entry.name}}</td>
+				<td>{{entry.references}}</td>
+			</tr>
+    	{% endfor %}	
+    	</table>
+    </div>
+{%endblock%}
+
+
+
