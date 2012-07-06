@@ -7,21 +7,21 @@
    			{% csrf_token %} 
    			<select name="mixture">
 	   				{% for entry in mixtures %}
-	   					<option>Mixture:{{entry}}</option>
+	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 	   			</select>
            </br></br>
    			--->
    			   	<select name="characteristic">
 	   				{% for entry in characteristics %}
-	   					<option>{{entry}}</option>
+	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 	   			</select>
            </br></br>
    			-------->
    			   	<select name="reference">
 	   				{% for entry in references %}
-	   					<option>{{entry}}</option>
+	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 	   			</select>	
    			<button type="submit">Run</button>
@@ -34,9 +34,9 @@
 	    		<th>value</th>
 	    		<th>speed</th>
 	    	</tr> 
-		    	{% for entry in characteristic %}
+		    	{% for entry in results %}
 					<tr>
-				     	<td>{{entry.mixture.reference}}</td>
+				     	<td>{{reference}}</td>
 					    <td>{{entry.mixture.name}}</td>
 					    <td>{{entry.name}}</td> 
 						<td>{{entry.value}}</td>

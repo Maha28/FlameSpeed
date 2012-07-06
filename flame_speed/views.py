@@ -66,9 +66,22 @@ def search(request):
     context['references'] = references
 
     if request.method == 'POST':
-         context['mixture']=models.Mixture.objects.filter(name = request.POST['mixture'])
-         context['characteristic']=models.Characteristic.objects.filter(name = request.POST['characteristic'])
-         context['reference']=models.Reference.objects.filter(id_ref = request.POST['reference'])
+         selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
+         selected_reference = models.Reference.objects.get(id_ref = request.POST['reference'])
+         
+         does_mixture_belong_to_reference = False
+         for reference_of_mixture in selected_mixture.references.all() :
+             #pdb.set_trace()
+             if reference_of_mixture == selected_reference: 
+                 does_mixture_belong_to_reference = True
+         
+         if does_mixture_belong_to_reference:
+             search_by_mixture_characteristic = models.Characteristic.objects.filter(mixture = selected_mixture).filter(name=request.POST['characteristic']).filter()
+         else:
+             search_by_mixture_characteristic = list()
+
+         context['results'] = search_by_mixture_characteristic
+         context['reference'] = request.POST['reference']
          messages.success(request, "You have successfully submited your search")
     return render(request, 'search.html', context)
 

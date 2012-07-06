@@ -58,3 +58,5 @@ class Characteristic(models.Model):
     speed = models.FloatField()
     conditions = models.CharField(max_length=100)
     mixture = models.ForeignKey(Mixture)
+    
+    
