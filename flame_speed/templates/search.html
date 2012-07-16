@@ -26,6 +26,7 @@
 	   			</select>	
    			<button type="submit">Run</button>
    		</form>
+   		
    		<table border="1" cellpadding="10" cellspacing="0">
     		<tr>
     	     	<th>reference</th>
@@ -36,7 +37,7 @@
 	    	</tr> 
 		    	{% for entry in results %}
 					<tr>
-				     	<td>{{reference}}</td>
+				     	<td>{{entry.reference.id_ref}}</td>
 					    <td>{{entry.mixture.name}}</td>
 					    <td>{{entry.name}}</td> 
 						<td>{{entry.value}}</td>

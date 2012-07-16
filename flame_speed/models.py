@@ -1,7 +1,7 @@
 from django.db import models
 import glob, os, pdb
-PROJECT_PATH = "/home/maha/workspace/FlameSpeed/Data/"
-RefFile_PATH = "/home/maha/workspace/FlameSpeed/References"
+PROJECT_PATH = "/home/maha/Development/FlameSpeed/Data/"
+RefFile_PATH = "/home/maha/Development/FlameSpeed/References"
 
 class ReferenceManager(models.Manager):
     def clean(self,List):
@@ -44,7 +44,7 @@ class MixtureManager(models.Manager):
                 characteristic_conditions = headtitle[1]
                 for line in inFile:
                     data = line.rstrip('\n\r').split("  ")
-                    characteristic = Characteristic(name = characteristic_name,value=data[0], speed=data[1], conditions=characteristic_conditions, mixture = mixture)
+                    characteristic = Characteristic(name = characteristic_name,value=data[0], speed=data[1], conditions=characteristic_conditions, mixture = mixture, reference = reference_object)
                     characteristic.save()
       
 class Mixture(models.Model):
@@ -53,10 +53,10 @@ class Mixture(models.Model):
     references = models.ManyToManyField(Reference)
     
 class Characteristic(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=50)
     value = models.FloatField()
     speed = models.FloatField()
-    conditions = models.CharField(max_length=100)
+    conditions = models.CharField(max_length=150)
     mixture = models.ForeignKey(Mixture)
-    
+    reference = models.ForeignKey(Reference)
     
