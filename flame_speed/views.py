@@ -116,10 +116,10 @@ def H2_air_CO_CO2(request):
 def H2_air_Pressure(request):
     return render(request, 'H2_air_Pressure.html') 
 
-def H2_air_Pressure_Ref1(request):
+def H2_Pressure_Ref1(request):
     context = {}
-    context['data'] = models.Characteristic.objects.filter(name = 'equivalence_ratio', mixture ='H2_air')   
-    return render(request, 'H2_air_Pressure_Ref1.html',context)
+    context['data'] = models.Characteristic.objects.filter(name = 'equivalence_ratio', mixture ='H2')   
+    return render(request, 'H2_Pressure_Ref1.html',context)
 
 def H2_air_CO_Pressure(request):
     return render(request, 'H2_air_CO_Pressure.html') 
@@ -133,10 +133,11 @@ def H2_equivalence_ratio(request):
     context['reference_list'] = list(set(reference_list))
     return render(request, 'H2_equivalence_ratio.html', context)
 
-def H2_equivalence_ratio_ref4(request):
+def H2_equivalence_ratio_ref6(request):
     context = {}
-    context['data'] = models.Characteristic.objects.filter(name = 'equivalence_ratio', mixture ='H2', reference = '4')   
-    return render(request, 'H2_equivalence_ratio_ref4.html',context)
+    context['data'] = models.Characteristic.objects.filter(name = 'equivalence_ratio', mixture ='H2', conditions = 'P=0.35atm,T=25C', reference = '6')   
+    context['data1'] = models.Characteristic.objects.filter(name = 'equivalence_ratio', mixture ='H2', conditions = 'P=0.5atm,T=25C', reference = '6')
+    return render(request, 'H2_equivalence_ratio_ref6.html',context)
 
 def database(request):
     context = {}

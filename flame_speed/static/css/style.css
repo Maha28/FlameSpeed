@@ -32,7 +32,7 @@ nav ul, ul.menu {
 	padding: 0 50px;
 	text-align:left;
 	position: relative;
-	background: #fff url(../_images/cycle_back.gif) no-repeat top right;
+	background: #FFE4E1 url(../_images/cycle_back.gif) no-repeat top right;
 }
 header#mainHeader {
 	height: 185px;
@@ -98,7 +98,7 @@ header#mainHeader ul li a:hover {
 }
 header#mainHeader hgroup h1 {
 	font-size: 6em;
-	color: #7f7f7f;
+	color: #DC143C;
 	font-weight: normal;
 }
 header#mainHeader hgroup h2 {

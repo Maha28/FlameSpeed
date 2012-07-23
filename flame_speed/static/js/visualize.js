@@ -12,8 +12,8 @@ $.fn.visualize = function(options, container){
 		//configuration
 		var o = $.extend({
 			type: 'line', //also available: area, pie, line
-			width: $(this).width(), //height of canvas - defaults to table height
-			height: $(this).height(), //height of canvas - defaults to table height
+			width: 600, //$(this).width(), //height of canvas - defaults to table height
+			height:  500, //$(this).height(), //height of canvas - defaults to table height
 			appendTitle: true, //table caption text is added to chart
 			title: null, //grabs from table caption if null
 			appendKey: true, //color key is added to chart
@@ -28,7 +28,8 @@ $.fn.visualize = function(options, container){
 			lineWeight: 4, //for line and area - stroke weight
 			barGroupMargin: 10,
 			barMargin: 1, //space around bars in bar chart (added to both sides of bar)
-			yLabelInterval: 3 //distance between y labels
+			yLabelInterval: 20, //distance between y labels// it was 3
+			markerOptions:{style:'square'}
 		},options);
 		
 		//reset width, height to numbers
