@@ -56,7 +56,7 @@ class Characteristic(models.Model):
     name = models.CharField(max_length=50)
     value = models.FloatField()
     speed = models.FloatField()
-    conditions = models.CharField(max_length=150)
+    conditions = models.CharField(max_length=200)
     mixture = models.ForeignKey(Mixture)
     reference = models.ForeignKey(Reference)
     
