@@ -141,27 +141,43 @@ def H2_equivalence_ratio_ref6(request):
 
 def database(request):
     context = {}
-    mixtures  = list()
-    characteristic_list  = list()
-    reference_list  = list()
-    
-    for mixture in models.Mixture.objects.all():
-        mixtures.append(mixture.name)
-    context['mixtures'] = mixtures
 
     if request.method == 'POST':
-        selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
-        for characteristic in models.Characteristic.objects.filter(mixture = selected_mixture):
-            characteristic_list.append(characteristic.name)
-        messages.success(request, "You have successfully submitted your search")          
-    if request.method == 'POST1':
-        selected_characteristic = models.Characteristic.objects.get(name = request.POST1['characteristic'])
-        for characteristic in models.Characteristic.objects.filter(mixture = selected_mixture).filter(name = selected_characteristic).filter():
-            reference_list.append(characteristic.reference.id_ref)
-        messages.success(request, "You have successfully submitted your search1")
+        #case 1: only mixture was selected
+        if 'mixture' in request.POST and not 'characteristic' in request.POST and not 'reference' in request.POST  :
+            selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
+            characteristic_list  = list()
+            for characteristic in models.Characteristic.objects.filter(mixture = selected_mixture):
+                characteristic_list.append(characteristic.name) 
+            context['characteristic_list'] = list(set(characteristic_list))
             
-    context['characteristic_list'] = list(set(characteristic_list))
-    context['reference_list'] = list(set(reference_list))
-       
+            mix_name = list()
+            mix_name.append(selected_mixture.name)
+            context['mixtures'] = mix_name
+            
+            return render(request, 'database.html',context) 
+        #case 2: mixture and characteristic were selected
+        elif 'mixture' in request.POST and 'characteristic' in request.POST and not 'reference' in request.POST  :
+            selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
+            selected_characteristics = models.Characteristic.objects.filter(mixture = selected_mixture, name = request.POST['characteristic'])
+            reference_list  = list()
+            for characteristic in selected_characteristics:
+                reference_list.append(characteristic.reference.id_ref)
+            context['reference_list'] = list(set(reference_list))
+            
+            mix_name = list()
+            mix_name.append(selected_mixture.name)
+            context['mixtures'] = mix_name        
+            
+    #        charact_name = list()
+    #        charact_name.append(models.Characteristic.objects.filter(name = request.POST['characteristic'])) 
+    #        context['characteristic_list'] = set(charact_name)
+            
+            return render(request, 'database.html',context)
+    else:
+        mixtures  = list()
+        for mixture in models.Mixture.objects.all():
+            mixtures.append(mixture.name)
+        context['mixtures'] = mixtures
+        
     return render(request, 'database.html',context)
-    
