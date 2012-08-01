@@ -1,0 +1,58 @@
+{%extends "base.html"%}
+{%block title%}Data{%endblock%}
+{%block content%}
+<section id="data">
+   		<form method="POST" class="databaseForm" action="{% url data %}">
+   			{% csrf_token %} 
+   				<select name="mixture">
+	   				{% for entry in mixtures %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+	   			</select>
+   			<button type="submit">Select Mixture</button>
+	 
+	   			<select name="characteristic">
+	   				{% for entry in characteristic_list %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+
+		   		</select>
+   			<button type="submit">Select Characteristic</button>
+
+	   			<select name="reference">
+	   				{% for entry in reference_list %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>
+   			<button type="submit">Select Reference</button>		   		
+	   		
+	   		<select name="conditions">
+	   				{% for entry in conditions_list %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>
+   		    <button type="submit">Table</button>
+ 
+   		<table border="1" cellpadding="10" cellspacing="0">
+    		<tr>
+    	     	<th>reference</th>
+    		    <th>mixture</th>
+    		    <th>characteristic</th>
+	    		<th>value</th>
+	    		<th>speed</th>
+	    		<th>conditions</th>
+	    	</tr> 
+		    	{% for entry in data %}
+					<tr>
+				     	<td>{{entry.reference.id_ref}}</td>
+					    <td>{{entry.mixture.name}}</td>
+					    <td>{{entry.name}}</td> 
+						<td>{{entry.value}}</td>
+						<td>{{entry.speed}}</td>
+						<td>{{entry.conditions}}</td>
+					</tr>
+		    	{% endfor %}	
+    	</table>
+ </form>         	     	        	
+</section>    	 
+{%endblock%}
