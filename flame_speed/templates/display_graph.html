@@ -13,7 +13,13 @@
 		<thead>
 			<tr>
 				<td scope="row">{{characteristic_name}}</td>
-				{% for entry in data %}
+				{% for entry in data1 %}
+				    <th scope="col">{{entry.value}}</th>
+				{% endfor %}			
+			</tr>
+			<tr>
+				<td scope="row">{{characteristic_name}}</td>
+				{% for entry in data2 %}
 				    <th scope="col">{{entry.value}}</th>
 				{% endfor %}			
 			</tr>
@@ -21,7 +27,13 @@
 		<tbody>
 			<tr>
 			    <th scope="row">Flame Speed[m/s]</th>
-				{% for entry in data %}
+				{% for entry in data1 %}
+				    <td scope="col">{{entry.speed}}</td>
+				{% endfor %}
+			</tr>		
+			<tr>
+			    <th scope="row">Flame Speed[m/s]</th>
+				{% for entry in data2 %}
 				    <td scope="col">{{entry.speed}}</td>
 				{% endfor %}
 			</tr>	

@@ -5,34 +5,56 @@
 <section id="graph">
    		<form method="POST" class="databaseForm" action="{% url graph %}">
    			{% csrf_token %} 
-   				<select name="mixture">
-	   				{% for entry in mixtures %}
+   				<select name="mixture1">
+	   				{% for entry in mixtures1 %}
 	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 	   			</select>
-   			<button type="submit">Select Mixture</button>
 	 
-	   			<select name="characteristic">
-	   				{% for entry in characteristic_list %}
+	   			<select name="characteristic1">
+	   				{% for entry in characteristic_list1 %}
 	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
+		   		</select>
 
-		   		</select>
-   			<button type="submit">Select Characteristic</button>
+	   			<select name="reference1">
+	   				{% for entry in reference_list1 %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>		   		
 
-	   			<select name="reference">
-	   				{% for entry in reference_list %}
+	   		    <select name="conditions1">
+	   				{% for entry in conditions_list1 %}
 	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 		   		</select>
-   			<button type="submit">Select Reference</button>		   		
-	   		
-	   		<select name="conditions">
-	   				{% for entry in conditions_list %}
+
+   		    </br>
+   		    <br> 
+   				<select name="mixture2">
+	   				{% for entry in mixtures2 %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+	   			</select>
+	 
+	   			<select name="characteristic2">
+	   				{% for entry in characteristic_list2 %}
 	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 		   		</select>
-   		    <button type="submit">Display Graph</button>
+
+	   			<select name="reference2">
+	   				{% for entry in reference_list2 %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>		   		
+   		   	   		
+	   		    <select name="conditions2">
+	   				{% for entry in conditions_list2 %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>
+   		   <button type="submit">Display Graph</button>
    		</form>         	     	        	
 </section>  
 

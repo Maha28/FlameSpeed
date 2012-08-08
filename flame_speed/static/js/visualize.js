@@ -26,6 +26,7 @@ $.fn.visualize = function(options, container){
 			pieLabelsAsPercent: true,
 			pieLabelPos: 'inside',
 			lineWeight: 4, //for line and area - stroke weight
+			markerOptions:{style:'diamond', size:10}, //added by Maha
 			barGroupMargin: 10,
 			barMargin: 1, //space around bars in bar chart (added to both sides of bar)
 			yLabelInterval: 20, //distance between y labels// it was 3
