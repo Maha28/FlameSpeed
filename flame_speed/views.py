@@ -4,6 +4,7 @@ from django.core.urlresolvers import resolve, reverse
 from django.shortcuts import render
 import models
 import pdb
+import json
 
 #Populates
 def populate_reference (request):
@@ -17,19 +18,6 @@ def populate_mixture_characteristic (request):
 #Base
 def home(request):
     return render(request, 'home.html')
-def plot_test(request):
-    return render(request, 'plot_test.html')
-
-def characteristic(request):
-    context = {}
-    context['characteristics'] = models.Characteristic.objects.all() 
-    return render(request, 'characteristic.html',context) 
-
-def reference(request):
-    context = {}
-    context['reference'] = models.Reference.objects.all() 
-    context['range'] = range(1,16)
-    return render(request, 'reference.html',context) 
 
 def mixture(request):
     context = {}
@@ -43,6 +31,17 @@ def mixture(request):
         mixtures.append(mixture_instance)
     context['mixtures'] = mixtures
     return render(request, 'mixture.html',context) 
+
+def characteristic(request):
+    context = {}
+    context['characteristics'] = models.Characteristic.objects.all() 
+    return render(request, 'characteristic.html',context) 
+
+def reference(request):
+    context = {}
+    context['reference'] = models.Reference.objects.all() 
+    context['range'] = range(1,16)
+    return render(request, 'reference.html',context) 
 
 def data(request):
     context = {}
@@ -104,7 +103,7 @@ def data(request):
         elif 'mixture' in request.POST and 'characteristic' in request.POST and 'reference' in request.POST and 'conditions' in request.POST :
             context['characteristic_name'] = request.POST['characteristic']
             context['data'] = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture =request.POST['mixture'], reference = request.POST['reference'], conditions = request.POST['conditions'])            
-            return render(request, 'data.html',context)
+            return render(request, 'data.html', context)
     else:
         mixtures  = list()
         for mixture in models.Mixture.objects.all():
@@ -213,12 +212,19 @@ def graph(request):
         #case 4: mixture1,characteristic1, reference1, conditions1, mixture2,characteristic2, reference2 and conditions2were selected
         elif 'mixture1' in request.POST and 'characteristic1' in request.POST and 'reference1' in request.POST and 'conditions1' in request.POST and 'mixture2' in request.POST and 'characteristic2' in request.POST and 'reference2' in request.POST and 'conditions2' in request.POST :
             context['characteristic_name1'] = request.POST['characteristic1']
-            context['data1'] = models.Characteristic.objects.filter(name = request.POST['characteristic1'], mixture =request.POST['mixture1'], reference = request.POST['reference1'], conditions = request.POST['conditions1'])            
-        
-            context['characteristic_name2'] = request.POST['characteristic2']
-            context['data2'] = models.Characteristic.objects.filter(name = request.POST['characteristic2'], mixture =request.POST['mixture2'], reference = request.POST['reference2'], conditions = request.POST['conditions2'])            
-
-            return render(request, 'display_graph.html',context)
+            selected_data1 = models.Characteristic.objects.filter(name = request.POST['characteristic1'], mixture =request.POST['mixture1'], reference = request.POST['reference1'], conditions = request.POST['conditions1'])         
+            selected_data2 = models.Characteristic.objects.filter(name = request.POST['characteristic2'], mixture =request.POST['mixture2'], reference = request.POST['reference2'], conditions = request.POST['conditions2'])
+            data1 = list()
+            data2 = list() 
+            for data in selected_data1 :
+                data1.append([data.value,data.speed])
+            for data in selected_data2 :
+                data2.append([data.value,data.speed])
+            context = request.POST['characteristic1']
+            charact = request.POST['characteristic1']
+            label1 = request.POST['reference1']
+            label2 = request.POST['reference2']
+            return render(request, 'display_graph.html', {'data1':json.dumps(data1),'data2':json.dumps(data2),'charact':json.dumps(charact),'label1':json.dumps(label1),'label2':json.dumps(label2)})
         
     else:        
         mixtures  = list()
@@ -230,28 +236,5 @@ def graph(request):
     return render(request, 'graph.html',context)
 
 #Templates
-def H2(request):
-    context = {}
-    characteristic_list  = list()
-    for characteristic in models.Characteristic.objects.filter(mixture = 'H2'):
-        characteristic_list.append(characteristic.name)
-    context['characteristic_list'] = list(set(characteristic_list))
-    return render(request, 'H2.html', context) 
-
-def H2_equivalence_ratio(request):
-    context = {}
-    reference_list  = list()
-    selected_characteristic=models.Characteristic.objects.filter(name = 'equivalence_ratio', mixture ='H2')
-    for characteristic in selected_characteristic:
-        reference_list.append(characteristic.reference)
-    context['reference_list'] = list(set(reference_list))
-    return render(request, 'H2_equivalence_ratio.html', context)
-
-def H2_equivalence_ratio_ref6(request):
-    context = {}
-    context['data'] = models.Characteristic.objects.filter(name = 'equivalence_ratio', mixture ='H2', conditions = 'P=0.35atm,T=25C', reference = '6')   
-    context['data1'] = models.Characteristic.objects.filter(name = 'equivalence_ratio', mixture ='H2', conditions = 'P=0.5atm,T=25C', reference = '6')
-    return render(request, 'H2_equivalence_ratio_ref6.html',context)
-
 def display_graph(request):
     return render(request, 'display_graph.html',context)
