@@ -87,7 +87,7 @@ header#mainHeader ul li {
 }
 header#mainHeader ul li a{
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.5em;
+	font-size: 1.2em; /* was 1.5em*/
 	color: #000;
 	padding: 0 20px;
 	border-right: 1px solid #000;
@@ -114,7 +114,7 @@ section#trailInfo {
 	border-right: 1px solid #7f7f7f;
 }
 section#trailInfo header p {
-	font-size: 1.2em; /*0.9*/
+	font-size: 0.9em;
 	color: #cb7d20;
 }
 section#trailInfo header a {
@@ -125,7 +125,7 @@ section#trailInfo header a:hover {
 }
 section#trailInfo header h1 {
 	font-weight: normal;
-	font-size: 1.3em;
+	font-size: 1.3em; 
 	margin-top: 1em;
 }
 section#trailInfo article h1 {
