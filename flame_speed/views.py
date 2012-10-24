@@ -75,7 +75,8 @@ def data(request):
             mix_name.append(selected_mixture.name)
             context['mixtures'] = mix_name        
             
-            context['characteristic_list'] = list(set(charact_name))
+#            context['characteristic_list'] = list(set(charact_name))
+            context['data'] = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture =request.POST['mixture'])
             
             return render(request, 'data.html',context)
         #case 3: mixture,characteristic and reference were selected
@@ -101,8 +102,8 @@ def data(request):
         
         #case 4: mixture,characteristic, reference and conditions were selected
         elif 'mixture' in request.POST and 'characteristic' in request.POST and 'reference' in request.POST and 'conditions' in request.POST :
-            context['characteristic_name'] = request.POST['characteristic']
-            context['data'] = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture =request.POST['mixture'], reference = request.POST['reference'], conditions = request.POST['conditions'])            
+            context['characteristic_name'] = request.POST['characteristic']   
+#            context['data'] = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture =request.POST['mixture'], reference = request.POST['reference'], conditions = request.POST['conditions'])          
             return render(request, 'data.html', context)
     else:
         mixtures  = list()
@@ -117,121 +118,44 @@ def graph(request):
     context = {}
 
     if request.method == 'POST':
-        #case 1: mixture1 and mixture2 were selected
-        if 'mixture1' in request.POST and  'mixture2' in request.POST and not 'characteristic1' in request.POST and not 'reference1' in request.POST and not 'conditions1' in request.POST and not 'characteristic2' in request.POST and not 'reference2' in request.POST and not 'conditions2' in request.POST:
+        #case 1: mixture1 were selected
+        if 'mixture1' in request.POST and not 'characteristic1' in request.POST:
             selected_mixture1 = models.Mixture.objects.get(name = request.POST['mixture1'])
             characteristic_list1  = list()
             for characteristic in models.Characteristic.objects.filter(mixture = selected_mixture1):
                 characteristic_list1.append(characteristic.name) 
             context['characteristic_list1'] = list(set(characteristic_list1))
-
-            selected_mixture2 = models.Mixture.objects.get(name = request.POST['mixture2'])
-            characteristic_list2  = list()
-            for characteristic in models.Characteristic.objects.filter(mixture = selected_mixture2):
-                characteristic_list2.append(characteristic.name) 
-            context['characteristic_list2'] = list(set(characteristic_list2))
           
             mix_name1 = list()
             mix_name1.append(selected_mixture1.name)
             context['mixtures1'] = mix_name1
-            
-            mix_name2 = list()
-            mix_name2.append(selected_mixture2.name)
-            context['mixtures2'] = mix_name2
-            
-            return render(request, 'graph.html',context) 
-        #case 2: mixture1, characteristic1, mixture2 and characteristic2 were selected
-        elif 'mixture1' in request.POST and 'mixture2' in request.POST and 'characteristic1' in request.POST and 'characteristic2' in request.POST and not 'reference1' in request.POST and not 'conditions1' in request.POST and not 'reference2' in request.POST and not 'conditions2' in request.POST :
-            selected_mixture1 = models.Mixture.objects.get(name = request.POST['mixture1'])
-            selected_characteristics1 = models.Characteristic.objects.filter(mixture = selected_mixture1, name = request.POST['characteristic1'])
-            reference_list1  = list()
-            charact_name1 = list() 
-            for characteristic in selected_characteristics1:
-                reference_list1.append(characteristic.reference.id_ref)
-                charact_name1.append(characteristic.name)
-            context['reference_list1'] = list(set(reference_list1))
-            
-            selected_mixture2 = models.Mixture.objects.get(name = request.POST['mixture2'])
-            selected_characteristics2 = models.Characteristic.objects.filter(mixture = selected_mixture2, name = request.POST['characteristic2'])
-            reference_list2  = list()
-            charact_name2 = list() 
-            for characteristic in selected_characteristics2:
-                reference_list2.append(characteristic.reference.id_ref)
-                charact_name2.append(characteristic.name)
-            context['reference_list2'] = list(set(reference_list2))
-            
-            mix_name = list()
-            mix_name.append(selected_mixture1.name)
-            context['mixtures1'] = mix_name        
-            context['characteristic_list1'] = list(set(charact_name1))
-            
-            mix_name2 = list()
-            mix_name2.append(selected_mixture2.name)
-            context['mixtures2'] = mix_name2        
-            context['characteristic_list2'] = list(set(charact_name2))
-            
-            return render(request, 'graph.html',context)
-        #case 3: mixture1, characteristic1, reference1, mixture2, characteristic2 and reference2 were selected
-        elif 'mixture1' in request.POST and 'characteristic1' in request.POST and 'reference1' in request.POST and 'mixture2' in request.POST and 'characteristic2' in request.POST and 'reference2' in request.POST and not 'conditions1' in request.POST and not 'conditions2' in request.POST:
-            selected_mixture1 = models.Mixture.objects.get(name = request.POST['mixture1'])
-            selected_characteristics1 = models.Characteristic.objects.filter(mixture = selected_mixture1, name = request.POST['characteristic1'], reference = request.POST['reference1'])
-            conditions_list1  = list()
-            charact_name1 = list() 
-            for characteristic in selected_characteristics1:
-                conditions_list1.append(characteristic.conditions)
-                charact_name1.append(characteristic.name)
-            context['conditions_list1'] = list(set(conditions_list1))
-            
-            selected_mixture2 = models.Mixture.objects.get(name = request.POST['mixture2'])
-            selected_characteristics2 = models.Characteristic.objects.filter(mixture = selected_mixture2, name = request.POST['characteristic2'], reference = request.POST['reference2'])
-            conditions_list2  = list()
-            charact_name2 = list() 
-            for characteristic in selected_characteristics2:
-                conditions_list2.append(characteristic.conditions)
-                charact_name2.append(characteristic.name)
-            context['conditions_list2'] = list(set(conditions_list2))
-            
-            mix_name1 = list()
-            mix_name1.append(selected_mixture1.name)
-            context['mixtures1'] = mix_name1                   
-            context['characteristic_list1'] = list(set(charact_name1))
-            ref_list1 = list()
-            ref_list1.append(request.POST['reference1'])
-            context['reference_list1'] = list(set(ref_list1))
-            
-            mix_name2 = list()
-            mix_name2.append(selected_mixture2.name)
-            context['mixtures2'] = mix_name2                   
-            context['characteristic_list2'] = list(set(charact_name2))
-            ref_list2 = list()
-            ref_list2.append(request.POST['reference2'])
-            context['reference_list2'] = list(set(ref_list2))            
 
-            return render(request, 'graph.html',context)
+            return render(request, 'graph.html',context) 
         
-        #case 4: mixture1,characteristic1, reference1, conditions1, mixture2,characteristic2, reference2 and conditions2were selected
-        elif 'mixture1' in request.POST and 'characteristic1' in request.POST and 'reference1' in request.POST and 'conditions1' in request.POST and 'mixture2' in request.POST and 'characteristic2' in request.POST and 'reference2' in request.POST and 'conditions2' in request.POST :
-            context['characteristic_name1'] = request.POST['characteristic1']
-            selected_data1 = models.Characteristic.objects.filter(name = request.POST['characteristic1'], mixture =request.POST['mixture1'], reference = request.POST['reference1'], conditions = request.POST['conditions1'])         
-            selected_data2 = models.Characteristic.objects.filter(name = request.POST['characteristic2'], mixture =request.POST['mixture2'], reference = request.POST['reference2'], conditions = request.POST['conditions2'])
-            data1 = list()
-            data2 = list() 
-            for data in selected_data1 :
-                data1.append([data.value,data.speed])
-            for data in selected_data2 :
-                data2.append([data.value,data.speed])
-            context = request.POST['characteristic1']
+        #case 2': mixture1, characteristic1 were selected
+        elif 'mixture1' in request.POST and 'characteristic1' in request.POST:    
+            selected_mixture1 = models.Mixture.objects.get(name = request.POST['mixture1'])                          
+            selected_alldata = models.Characteristic.objects.filter(name = request.POST['characteristic1'], mixture = selected_mixture1)       
+            reference_list = list()
+            for data in selected_alldata:
+                reference_list.append(data.reference.id_ref)
+            all_results = list()
+            for ref in reference_list:   
+                selected_data = models.Characteristic.objects.filter(reference = ref) 
+                result = list()
+                for data in selected_data:
+                    result.append([data.value,data.speed])
+                    all_results.append(result)
+                    
             charact = request.POST['characteristic1']
-            label1 = request.POST['reference1']
-            label2 = request.POST['reference2']
-            return render(request, 'display_graph.html', {'data1':json.dumps(data1),'data2':json.dumps(data2),'charact':json.dumps(charact),'label1':json.dumps(label1),'label2':json.dumps(label2)})
+#            label1 = request.POST['reference1']
+            return render(request, 'display_graph.html', {'all_results':json.dumps(all_results),'charact':json.dumps(charact)})
         
     else:        
         mixtures  = list()
         for mixture in models.Mixture.objects.all():
             mixtures.append(mixture.name)
         context['mixtures1'] = mixtures
-        context['mixtures2'] = mixtures
         
     return render(request, 'graph.html',context)
 

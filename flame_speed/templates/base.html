@@ -6,6 +6,26 @@
 <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/visualize.js"></script>
+    <link href="{{ STATIC_URL }}css/jquery.jqplot.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jqplot.min.js"></script>
+	<script type="text/javascript">
+	     $(document).ready(function() {
+	     var all_results = {{all_results}};
+         var len=all_results.length;
+         
+	     for(var i=0; i<len; i++) {
+	         var value = all_results[i];
+			 var plots = $.jqplot('chartdiv', [value],
+			 {
+			 title:'Flame speed {{charact}}',
+			 legend:{show:true},
+			 }
+			 );
+		 }
+		 });
+	   
+	 </script>
 </head>
 <body>
 <div id="wrapper">

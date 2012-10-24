@@ -9,7 +9,6 @@
 	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 	   			</select>
-   			<button type="submit">Select Mixture</button>
 	 
 	   			<select name="characteristic">
 	   				{% for entry in characteristic_list %}
@@ -17,21 +16,8 @@
 	   				{% endfor %}
 
 		   		</select>
-   			<button type="submit">Select Characteristic</button>
 
-	   			<select name="reference">
-	   				{% for entry in reference_list %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-		   		</select>
-   			<button type="submit">Select Reference</button>		   		
-	   		
-	   		<select name="conditions">
-	   				{% for entry in conditions_list %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-		   		</select>
-   		    <button type="submit">Table</button>
+   		    <button type="submit">Select</button>
  
    		<table border="1" cellpadding="10" cellspacing="0">
     		<tr>

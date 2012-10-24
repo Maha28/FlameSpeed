@@ -1,38 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="{{ STATIC_URL }}css/jquery.jqplot.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jqplot.min.js"></script>
-	<script type="text/javascript">
-	 $(document).ready(function() {
-	     var data1 = {{data1}};
-	     var data2 = {{data2}};
-		 var plots = $.jqplot('chartdiv', [data1,data2],
-		 {
-		 title:'Flame speed vs {{charact}}',
-		 legend:{show:true},
-		 series:[
-		 {
-		       label: 'Ref{{label1}}',      // label to use in the legend for this line.
-		       showLine: false,
-		       markerOptions: {size:7, style:'x'}
-		       
-		  },
-		  {     
-		       label: 'Ref{{label2}}',
-		       showLine: false,
-		       markerOptions: {size:7, style:'dimaond'}
-		 },
-		 ]
-		 }
-		 );
-	 });
-	 </script>
-  </head>
- <body>
+{%extends "base.html"%}
+{%block title%}Graph{%endblock%}
+
+{%block content%}
 	<div id="chartdiv" style="height:400px;width:300px;"></div>
 	<FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
- </body>
-</html>
+{%endblock%}
