@@ -135,21 +135,10 @@ def graph(request):
         #case 2': mixture1, characteristic1 were selected
         elif 'mixture1' in request.POST and 'characteristic1' in request.POST:    
             selected_mixture1 = models.Mixture.objects.get(name = request.POST['mixture1'])                          
-            selected_alldata = models.Characteristic.objects.filter(name = request.POST['characteristic1'], mixture = selected_mixture1)       
-            reference_list = list()
-            for data in selected_alldata:
-                reference_list.append(data.reference.id_ref)
-            all_results = list()
-            for ref in reference_list:   
-                selected_data = models.Characteristic.objects.filter(reference = ref) 
-                result = list()
-                for data in selected_data:
-                    result.append([data.value,data.speed])
-                    all_results.append(result)
+            selected_characteristics = models.Characteristic.objects.filter(name = request.POST['characteristic1'], mixture = selected_mixture1)       
                     
             charact = request.POST['characteristic1']
-#            label1 = request.POST['reference1']
-            return render(request, 'display_graph.html', {'all_results':json.dumps(all_results),'charact':json.dumps(charact)})
+            return render(request, 'display_graph.html', {'results':selected_characteristics,'charact':charact})
         
     else:        
         mixtures  = list()
