@@ -12,33 +12,42 @@
 	<script type="text/javascript">
 
       $(function () {
-        var graph = [];
+        var graph = [,];
            
         //Construct graph values
-        {% for record in results %}
-            if (graph [{{record.reference.id_ref}}] == null) {graph[{{record.reference.id_ref}}] = [];}
-            graph[{{record.reference.id_ref}}].push( [ {{record.value}} , {{record.speed}}] );
-        {% endfor %}
-
-        new_graph = [];
         j = 0;
-        for (var i = 0; i < graph.length; i++) {
-            if (graph[i]!=null) {
-               new_graph[j] = graph[i];
-               j++;
-            }
+        a = 1;
+        {% for record in results %}
+            if (graph [{{record.reference.id_ref}},j] == null) {graph[{{record.reference.id_ref}},j] = [];}
+            graph[{{record.reference.id_ref}},j].push( [ {{record.value}} , {{record.speed}}] );
+            if (a != null) {j++;}
+            document.write ({{record.conditions}});
+            
+        {% endfor %}
+       
+        new_graph = [,];
+        l = 0;
+        k = 0;
+        
+        for (var i = 0; i < graph.length ; i++) {
+            for (var j = 0; j < graph[i].length ; j++) {
+	            if (graph[i,j]!=null) {
+	               new_graph[k,l] = graph[i,j];
+	               l++;
+	            }
+	        }
+	        k++;
         }
-
        graph_options = {
             title:'Flame speed {{charact}}',
             legend:{show:true},
        }
 
-      $.jqplot('chartdiv', new_graph, graph_options);
-       
+      $.jqplot('chartdiv', new_graph, graph_options);    
 
-	   });
-	 </script>
+	   }); 
+	 </script>  
+
 </head>
 <body>
 <div id="wrapper">
