@@ -8,10 +8,10 @@
            
         //Construct graph values
         {% for record in results %}
-            if (graph ["Ref {{record.reference.id_ref}} {{record.conditions}}"] == null) {
-              graph["Ref {{record.reference.id_ref}} {{record.conditions}}"] = [];
+            if (graph ["{{record.reference.source}} {{record.conditions}}"] == null) {
+              graph["{{record.reference.source}} {{record.conditions}}"] = [];
             } else {
-              graph["Ref {{record.reference.id_ref}} {{record.conditions}}"].push( [ {{record.value}} , {{record.speed}}] );
+              graph["{{record.reference.source}} {{record.conditions}}"].push( [ {{record.value}} , {{record.speed}}] );
             }
         {% endfor %}
 
@@ -23,19 +23,34 @@
             series.push( {     
                    label: key,
                    showLine: false,
-                   pointLabels: {show: true},
+                   //pointLabels: {show: true},
                    markerOptions: { size: 7, style:"x"}
                    
              });
              i++;
         }
 
-        console.log(new_graph);
-
+       console.log(new_graph);
+       
        graph_options = {
             title:'Flame speed {{charact}}',
             legend:{show:true},
+            axes: {
+                  xaxis: {label: "{{charact}}",},
+                  yaxis: {
+                         label: "SL(m/s)",
+                         //tickOptions:{
+			           	  //          formatString:'%.2Pm/s'
+			              //}
+                  }
+                  },            
             series : series,
+            highlighter: {
+	            show: true,
+	            sizeAdjust: 7.5,
+	            //useAxesFormatters: false,
+	            //tooltipFormatString: '%.2Pm/s'                     
+            },      
        }
 
       $.jqplot('chartdiv', new_graph, graph_options);

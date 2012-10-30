@@ -11,13 +11,14 @@ class ReferenceManager(models.Manager):
         RefFile = open(RefFile_PATH, 'r')
         for line in RefFile:
             data = self.clean(line.strip(' \n').split("\t"))
-            reference = Reference(id_ref=data[0], title=data[1], authors=data[2], published_year=data[3])
+            reference = Reference(id_ref=data[0], source=data[1], title=data[2], authors=data[3], published_year=data[4])
             reference.save()        
         RefFile.close() 
 
 class Reference(models.Model):
     objects = ReferenceManager()
     id_ref = models.IntegerField()
+    source = models.CharField(max_length=300)
     title = models.CharField(max_length=300)
     authors = models.CharField(max_length=300)
     published_year = models.CharField(max_length=4)
