@@ -1,4 +1,4 @@
-equivalence_ratio  P=1atm,T=293.15K,closed_tip
+equivalence_ratio  P=1atm,T=293.15K  closed_tip
 0.903319502075  1.66263237519
 0.910580912863  1.7950075643
 0.94979253112  1.84266263238

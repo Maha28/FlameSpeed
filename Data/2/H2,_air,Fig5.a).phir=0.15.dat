@@ -1,4 +1,4 @@
-equivalence_ratio  P=1atm,T=303K,dilution_ratio(N2)=0.15
+equivalence_ratio  P=1atm,T=303K  dilution_ratio(N2)=0.15
 0.399556048835  0.184580366891
 0.599334073252  0.525854290174
 0.799112097669  0.985691899094

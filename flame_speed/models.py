@@ -42,10 +42,11 @@ class MixtureManager(models.Manager):
                 inFile = open(inFile_PATH, 'r')
                 headtitle = inFile.readline().rstrip('\n\r').split("  ")
                 characteristic_name = headtitle[0]
-                characteristic_conditions = headtitle[1]
+                characteristic_press_temp = headtitle[1]
+                characteristic_conditions = headtitle[2]
                 for line in inFile:
                     data = line.rstrip('\n\r').split("  ")
-                    characteristic = Characteristic(name = characteristic_name,value=data[0], speed=data[1], conditions=characteristic_conditions, mixture = mixture, reference = reference_object)
+                    characteristic = Characteristic(name = characteristic_name,value=data[0], speed=data[1], press_temp=characteristic_press_temp, conditions=characteristic_conditions, mixture = mixture, reference = reference_object)
                     characteristic.save()
       
 class Mixture(models.Model):
@@ -57,7 +58,8 @@ class Characteristic(models.Model):
     name = models.CharField(max_length=50)
     value = models.FloatField()
     speed = models.FloatField()
-    conditions = models.CharField(max_length=200)
+    press_temp = models.CharField(max_length=300)
+    conditions = models.CharField(max_length=300)
     mixture = models.ForeignKey(Mixture)
     reference = models.ForeignKey(Reference)
     

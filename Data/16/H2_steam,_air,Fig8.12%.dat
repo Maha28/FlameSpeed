@@ -1,4 +1,4 @@
-H2volumetric_fraction  P=1atm,T=323.15K,12%steam_concentration 
+H2volumetric_fraction  P=1atm,T=323.15K  12%steam_concentration 
 0.279498561961  1.93122420908
 0.350921595598  2.68500687758
 0.354948730774  2.59147180193

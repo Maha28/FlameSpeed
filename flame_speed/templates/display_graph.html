@@ -8,10 +8,10 @@
            
         //Construct graph values
         {% for record in results %}
-            if (graph ["{{record.reference.source}} {{record.conditions}}"] == null) {
-              graph["{{record.reference.source}} {{record.conditions}}"] = [];
+            if (graph ["{{record.reference.source}}, {{record.conditions}}"] == null) {
+              graph["{{record.reference.source}}, {{record.conditions}}"] = [];
             } else {
-              graph["{{record.reference.source}} {{record.conditions}}"].push( [ {{record.value}} , {{record.speed}}] );
+              graph["{{record.reference.source}}, {{record.conditions}}"].push( [ {{record.value}} , {{record.speed}}] );
             }
         {% endfor %}
 
