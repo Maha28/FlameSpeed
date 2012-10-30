@@ -22,7 +22,10 @@
             new_graph[i] = graph[key];
             series.push( {     
                    label: key,
-                   markerOptions: {size:7, style:'dimaond'}
+                   showLine: false,
+                   pointLabels: {show: true},
+                   markerOptions: { size: 7, style:"x"}
+                   
              });
              i++;
         }
@@ -40,6 +43,6 @@
 
      });
    </script>
-	<div id="chartdiv" style="height:1500px;width:100%;"></div>
+	<div id="chartdiv" style="height:800px;width:100%;"></div>
 	<FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 {%endblock%}
