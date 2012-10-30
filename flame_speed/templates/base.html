@@ -9,45 +9,6 @@
     <link href="{{ STATIC_URL }}css/jquery.jqplot.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jqplot.min.js"></script>
-	<script type="text/javascript">
-
-      $(function () {
-        var graph = [,];
-           
-        //Construct graph values
-        j = 0;
-        a = 1;
-        {% for record in results %}
-            if (graph [{{record.reference.id_ref}},j] == null) {graph[{{record.reference.id_ref}},j] = [];}
-            graph[{{record.reference.id_ref}},j].push( [ {{record.value}} , {{record.speed}}] );
-            if (a != null) {j++;}
-            document.write ({{record.conditions}});
-            
-        {% endfor %}
-       
-        new_graph = [,];
-        l = 0;
-        k = 0;
-        
-        for (var i = 0; i < graph.length ; i++) {
-            for (var j = 0; j < graph[i].length ; j++) {
-	            if (graph[i,j]!=null) {
-	               new_graph[k,l] = graph[i,j];
-	               l++;
-	            }
-	        }
-	        k++;
-        }
-       graph_options = {
-            title:'Flame speed {{charact}}',
-            legend:{show:true},
-       }
-
-      $.jqplot('chartdiv', new_graph, graph_options);    
-
-	   }); 
-	 </script>  
-
 </head>
 <body>
 <div id="wrapper">
@@ -68,7 +29,7 @@
   </nav>
 </header>
   <section id="content">
-  	<header>{% include "messages.html" %}</header>
+    <header>{% include "messages.html" %}</header>
     {% block content %}{% endblock content %}
   </section>
   <footer id="pageFooter">

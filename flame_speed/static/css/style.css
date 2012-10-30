@@ -267,3 +267,8 @@ footer#pageFooter a {
 footer#pageFooter a:hover {
 	color: #952;
 }
+
+
+#chardiv canvas {
+	width: 800px;
+}

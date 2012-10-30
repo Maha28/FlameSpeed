@@ -1,7 +1,45 @@
 {%extends "base.html"%}
 {%block title%}Graph{%endblock%}
-
 {%block content%}
-	<div id="chartdiv" style="height:400px;width:300px;"></div>
+  <script type="text/javascript">
+
+      $(function () {
+        var graph = {};
+           
+        //Construct graph values
+        {% for record in results %}
+            if (graph ["Ref {{record.reference.id_ref}} {{record.conditions}}"] == null) {
+              graph["Ref {{record.reference.id_ref}} {{record.conditions}}"] = [];
+            } else {
+              graph["Ref {{record.reference.id_ref}} {{record.conditions}}"].push( [ {{record.value}} , {{record.speed}}] );
+            }
+        {% endfor %}
+
+        new_graph = [];
+        series = []
+        i = 0;
+        for (var key in graph) {
+            new_graph[i] = graph[key];
+            series.push( {     
+                   label: key,
+                   markerOptions: {size:7, style:'dimaond'}
+             });
+             i++;
+        }
+
+        console.log(new_graph);
+
+       graph_options = {
+            title:'Flame speed {{charact}}',
+            legend:{show:true},
+            series : series,
+       }
+
+      $.jqplot('chartdiv', new_graph, graph_options);
+       
+
+     });
+   </script>
+	<div id="chartdiv" style="height:1500px;width:100%;"></div>
 	<FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 {%endblock%}
