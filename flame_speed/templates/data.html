@@ -4,21 +4,25 @@
 <section id="data">
    		<form method="POST" class="databaseForm" action="{% url data %}">
    			{% csrf_token %} 
-   				<select name="mixture">
+   				<select name="mixture" onclick="submit();">
 	   				{% for entry in mixtures %}
 	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 	   			</select>
 	 
-	   			<select name="characteristic">
+	   			<select name="characteristic" onclick="submit();">
 	   				{% for entry in characteristic_list %}
 	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 
 		   		</select>
-
-   		    <button type="submit">Select</button>
- 
+		   		
+	   			<select name="press_temp" onclick="submit();">
+	   				{% for entry in press_temp_list %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>				   		
+       </form>
    		<table border="1" cellpadding="10" cellspacing="0">
     		<tr>
     	     	<th>Reference</th>
@@ -39,7 +43,7 @@
 					</tr>
 		    	{% endfor %}	
     	</table>
- </form>
+
  <FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>         	     	        	
 </section>    	 
 {%endblock%}
