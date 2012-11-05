@@ -12,16 +12,11 @@
 	   			</select>
 	 
 	   			<select name="characteristic" onclick="submit();">
-	   				{% for entry in characteristic_list %}
+	   				{% for entry in data %}
 	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 		   		</select>	   		
 
-	   			<select name="press_temp" onclick="submit();">
-	   				{% for entry in press_temp_list %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-		   		</select>
    		</form>   
 
    		<FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>      	     	        	

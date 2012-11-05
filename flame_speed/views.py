@@ -48,7 +48,7 @@ def data(request):
 
     if request.method == 'POST':
         #case 1: only mixture was selected
-        if 'mixture' in request.POST and not 'characteristic' in request.POST and not 'reference' in request.POST  :
+        if 'mixture' in request.POST and not 'characteristic' in request.POST and not 'pressure_max' in request.POST and not 'pressure_min' in request.POST  :
             selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
             characteristic_list  = list()
             for characteristic in models.Characteristic.objects.filter(mixture = selected_mixture):
@@ -62,30 +62,29 @@ def data(request):
             return render(request, 'data.html',context) 
         
         #case 2: mixture, characteristic were selected
-        elif 'mixture' in request.POST and 'characteristic' in request.POST and not 'press_temp' in request.POST :    
+        elif 'mixture' in request.POST and 'characteristic' in request.POST and not 'pressure_max' in request.POST  and not 'pressure_min' in request.POST :    
             selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])                          
-            selected_characteristics = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture = selected_mixture) 
+            selected_characteristics = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture = selected_mixture)         
             
-            press_temp_list  = list()
             charact_name = list() 
             for characteristic in selected_characteristics:
-                press_temp_list.append(characteristic.press_temp)
                 charact_name.append(characteristic.name)
-            context['press_temp_list'] = list(set(press_temp_list))
             context['characteristic_list'] = list(set(charact_name))
             
             mix_name = list()
             mix_name.append(selected_mixture.name)
-            context['mixtures'] = mix_name     
-            
+            context['mixtures'] = mix_name 
+
             return render(request, 'data.html',context)
-        
-        #case 3: mixture, characteristic and press_temp were selected
-        elif 'mixture' in request.POST and 'characteristic' in request.POST and 'press_temp' in request.POST  :
-            context['data'] = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture =request.POST['mixture'], press_temp = request.POST['press_temp'])
+              
+        #case 3: mixture, characteristic and pressure were selected 
+        elif 'mixture' in request.POST and 'characteristic' in request.POST and 'pressure_max' in request.POST and 'pressure_min' in request.POST  :
+            selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
+            selected_characteristics = models.Characteristic.objects.filter(mixture = selected_mixture, name = request.POST['characteristic'], pressure_range = ['pressure_min','pressure_max'])
+            context['data'] =  selected_characteristics
             
-            return render(request, 'data.html', context)        
-        
+        return render(request, 'data.html',context)
+    
     else:
         mixtures  = list()
         for mixture in models.Mixture.objects.all():

@@ -2,6 +2,8 @@
 {%block title%}Data{%endblock%}
 {%block content%}
 <section id="data">
+       <fieldset>
+       <legend>Mixture</legend> <!-- Titre du fieldset -->
    		<form method="POST" class="databaseForm" action="{% url data %}">
    			{% csrf_token %} 
    				<select name="mixture" onclick="submit();">
@@ -16,13 +18,21 @@
 	   				{% endfor %}
 
 		   		</select>
-		   		
-	   			<select name="press_temp" onclick="submit();">
-	   				{% for entry in press_temp_list %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-		   		</select>				   		
-       </form>
+		</form>
+						   		
+       </fieldset>  
+		   <fieldset>
+		   <legend>Pressure</legend> 
+			   <p>Enter the range of the pressure</p>
+			   <p>Minimum</p>
+			   <input type="number" name="pressure_min" min=1 max=100 />
+			   <p>Maximum</p>
+			   <input type="number" name="pressure_max" min=1 max=100 />
+			   <input type="submit" />
+		   </fieldset>		   
+
+       <fieldset>
+       <legend>Data</legend> 
    		<table border="1" cellpadding="10" cellspacing="0">
     		<tr>
     	     	<th>Reference</th>
@@ -30,7 +40,6 @@
     		    <th>Characteristic</th>
 	    		<th>Value</th>
 	    		<th>Speed</th>
-	    		<th>Conditions</th>
 	    	</tr> 
 		    	{% for entry in data %}
 					<tr>
@@ -39,10 +48,10 @@
 					    <td>{{entry.name}}</td> 
 						<td>{{entry.value}}</td>
 						<td>{{entry.speed}}</td>
-						<td>{{entry.conditions}}</td>
 					</tr>
 		    	{% endfor %}	
     	</table>
+    	</fieldset>
 
  <FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>         	     	        	
 </section>    	 

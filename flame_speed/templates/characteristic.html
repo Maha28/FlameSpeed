@@ -9,7 +9,8 @@
 	    		<th>Name</th>	    	
 	    		<th>Value</th>
 	    		<th>Speed</th>
-	    		<th>Conditions</th>
+	    		<th>Pressure(atm)</th>
+	    		<th>Temperature(K)</th>
 	    		<th>Mixture</th>
     		</tr>    	
     	{% for entry in characteristics %}
@@ -18,7 +19,8 @@
 				<td>{{entry.name}}</td>
 				<td>{{entry.value}}</td>
 				<td>{{entry.speed}}</td>
-				<td>{{entry.conditions}}</td>
+				<td>{{entry.pressure}}</td>
+				<td>{{entry.temperature}}</td>
 				<td>{{entry.mixture.name}}</td>
 			</tr>
     	{% endfor %}	

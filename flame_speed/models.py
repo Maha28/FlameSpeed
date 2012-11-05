@@ -40,13 +40,11 @@ class MixtureManager(models.Manager):
                 mixture.save()
                 mixture.references.add(reference_object)
                 inFile = open(inFile_PATH, 'r')
-                headtitle = inFile.readline().rstrip('\n\r').split("  ")
-                characteristic_name = headtitle[0]
-                characteristic_press_temp = headtitle[1]
-                characteristic_conditions = headtitle[2]
+                headtitle = inFile.readline().rstrip('\n\r').split(",")
+                
                 for line in inFile:
                     data = line.rstrip('\n\r').split("  ")
-                    characteristic = Characteristic(name = characteristic_name,value=data[0], speed=data[1], press_temp=characteristic_press_temp, conditions=characteristic_conditions, mixture = mixture, reference = reference_object)
+                    characteristic = Characteristic(name = headtitle[0], value=data[0], speed=data[1], pressure=headtitle[1], temperature=headtitle[2], nH2_nO2=headtitle[3], nN2_nO2=headtitle[4], CO=headtitle[5], CO2=headtitle[6], H2O=headtitle[7], N2=headtitle[8], details=headtitle[9], mixture = mixture, reference = reference_object)
                     characteristic.save()
       
 class Mixture(models.Model):
@@ -58,8 +56,15 @@ class Characteristic(models.Model):
     name = models.CharField(max_length=50)
     value = models.FloatField()
     speed = models.FloatField()
-    press_temp = models.CharField(max_length=300)
-    conditions = models.CharField(max_length=300)
+    pressure = models.CharField(max_length=200)
+    temperature = models.CharField(max_length=200)
+    nH2_nO2 = models.CharField(max_length=200)
+    nN2_nO2 = models.CharField(max_length=200)
+    CO = models.CharField(max_length=200)
+    CO2 = models.CharField(max_length=200)    
+    H2O = models.CharField(max_length=200) 
+    N2 = models.CharField(max_length=200)
+    details = models.CharField(max_length=200)
     mixture = models.ForeignKey(Mixture)
     reference = models.ForeignKey(Reference)
     
