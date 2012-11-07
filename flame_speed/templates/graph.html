@@ -12,10 +12,34 @@
 	   			</select>
 	 
 	   			<select name="characteristic" onclick="submit();">
-	   				{% for entry in data %}
+	   				{% for entry in characteristic_list %}
 	   					<option value="{{entry}}">{{entry}}</option>
 	   				{% endfor %}
 		   		</select>	   		
+		   		
+		   		<select name="pressure" onclick="submit();">
+	   				{% for entry in pressure_list %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>	 
+		   		
+		   		<select name="temperature" onclick="submit();">
+	   				{% for entry in temperature_list %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>
+		   		
+		   		<select name="nH2_nO2" onclick="submit();">
+	   				{% for entry in nH2_nO2_list %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>
+		   		
+		   		<select name="nN2_nO2" onclick="submit();">
+	   				{% for entry in nN2_nO2_list %}
+	   					<option value="{{entry}}">{{entry}}</option>
+	   				{% endfor %}
+		   		</select>
 
    		</form>   
 

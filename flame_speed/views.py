@@ -99,7 +99,7 @@ def graph(request):
 
     if request.method == 'POST':
         #case 1: mixture were selected
-        if 'mixture' in request.POST and not 'characteristic' in request.POST:
+        if 'mixture' in request.POST and not 'characteristic' in request.POST and not 'pressure' in request.POST and not 'temperature' in request.POST and not 'nH2_nO2' in request.POST and not 'nN2_nO2' in request.POST :
             selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
             characteristic_list  = list()
             for characteristic in models.Characteristic.objects.filter(mixture = selected_mixture):
@@ -113,16 +113,16 @@ def graph(request):
             return render(request, 'graph.html',context) 
         
         #case 2: mixture, characteristic were selected
-        elif 'mixture' in request.POST and 'characteristic' in request.POST and not 'press_temp' in request.POST :    
+        elif 'mixture' in request.POST and 'characteristic' in request.POST and not 'pressure' in request.POST and not 'temperature' in request.POST and not 'nH2_nO2' in request.POST and not 'nN2_nO2' in request.POST :    
             selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])                          
             selected_characteristics = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture = selected_mixture) 
             
-            press_temp_list  = list()
+            pressure_list  = list()
             charact_name = list() 
             for characteristic in selected_characteristics:
-                press_temp_list.append(characteristic.press_temp)
+                pressure_list.append(characteristic.pressure)
                 charact_name.append(characteristic.name)
-            context['press_temp_list'] = list(set(press_temp_list))
+            context['pressure_list'] = list(set(pressure_list))
             context['characteristic_list'] = list(set(charact_name))
             
             mix_name = list()
@@ -131,10 +131,86 @@ def graph(request):
             
             return render(request, 'graph.html',context)
         
-        #case 3: mixture, characteristic and press_temp were selected
-        elif 'mixture' in request.POST and 'characteristic' in request.POST and 'press_temp' in request.POST  :
+        #case 3: mixture, characteristic and pressure were selected
+        elif 'mixture' in request.POST and 'characteristic' in request.POST and 'pressure' in request.POST and not 'temperature' in request.POST and not 'nH2_nO2' in request.POST and not 'nN2_nO2' in request.POST :    
+            selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])                          
+            selected_characteristics = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture = selected_mixture, pressure = request.POST['pressure']) 
+            
+            pressure_list  = list()
+            temperature_list  = list()
+            charact_name = list() 
+            for characteristic in selected_characteristics:
+                pressure_list.append(characteristic.pressure)
+                temperature_list.append(characteristic.temperature)
+                charact_name.append(characteristic.name)
+            context['pressure_list'] = list(set(pressure_list))
+            context['temperature_list'] = list(set(temperature_list))
+            context['characteristic_list'] = list(set(charact_name))
+            
+            mix_name = list()
+            mix_name.append(selected_mixture.name)
+            context['mixtures'] = mix_name     
+            
+            return render(request, 'graph.html',context)
+        
+        
+        #case 4: mixture, characteristic,pressure and temperature were selected
+        elif 'mixture' in request.POST and 'characteristic' in request.POST and 'pressure' in request.POST and 'temperature' in request.POST and not 'nH2_nO2' in request.POST and not 'nN2_nO2' in request.POST :    
+            selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])                          
+            selected_characteristics = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture = selected_mixture, pressure = request.POST['pressure'], temperature = request.POST['temperature']) 
+            
+            nH2_nO2_list  = list()
+            temperature_list  = list()
+            pressure_list  = list()            
+            charact_name = list() 
+            for characteristic in selected_characteristics:
+                nH2_nO2_list.append(characteristic.nH2_nO2)
+                temperature_list.append(characteristic.temperature)
+                pressure_list.append(characteristic.pressure)
+                charact_name.append(characteristic.name)
+            context['nH2_nO2_list'] = list(set(nH2_nO2_list))            
+            context['temperature_list'] = list(set(temperature_list))
+            context['pressure_list'] = list(set(pressure_list))
+            context['characteristic_list'] = list(set(charact_name))
+            
+            mix_name = list()
+            mix_name.append(selected_mixture.name)
+            context['mixtures'] = mix_name     
+            
+            return render(request, 'graph.html',context)
+        
+        #case 5: mixture, characteristic, pressure, temperature and nH2_nO2 were selected
+        elif 'mixture' in request.POST and 'characteristic' in request.POST and 'pressure' in request.POST and 'temperature' in request.POST and 'nH2_nO2' in request.POST and not 'nN2_nO2' in request.POST :    
+            selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])                          
+            selected_characteristics = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture = selected_mixture, pressure = request.POST['pressure'], temperature = request.POST['temperature'], nH2_nO2 = request.POST['nH2_nO2']) 
+            
+            nN2_nO2_list  = list()
+            nH2_nO2_list  = list()
+            temperature_list  = list()
+            pressure_list  = list()            
+            charact_name = list() 
+            for characteristic in selected_characteristics:
+                nN2_nO2_list.append(characteristic.nN2_nO2)
+                nH2_nO2_list.append(characteristic.nH2_nO2)
+                temperature_list.append(characteristic.temperature)
+                pressure_list.append(characteristic.pressure)
+                charact_name.append(characteristic.name)
+            context['nN2_nO2_list'] = list(set(nN2_nO2_list)) 
+            context['nH2_nO2_list'] = list(set(nH2_nO2_list))            
+            context['temperature_list'] = list(set(temperature_list))
+            context['pressure_list'] = list(set(pressure_list))
+            context['characteristic_list'] = list(set(charact_name))
+            
+            mix_name = list()
+            mix_name.append(selected_mixture.name)
+            context['mixtures'] = mix_name  
+            
+            return render(request, 'graph.html',context)
+        
+        #case 6: mixture, characteristic, pressure, temperature, nH2_nO2  and nN2_nO2 were selected
+        elif 'mixture' in request.POST and 'characteristic' in request.POST and 'pressure' in request.POST and 'temperature' in request.POST and 'nH2_nO2' in request.POST and 'nN2_nO2' in request.POST :
             selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
-            selected_characteristics = models.Characteristic.objects.filter(mixture = selected_mixture, name = request.POST['characteristic'], press_temp = request.POST['press_temp'])
+            selected_characteristics = models.Characteristic.objects.filter(mixture = selected_mixture, name = request.POST['characteristic'], pressure = request.POST['pressure'], temperature = request.POST['temperature'], nH2_nO2 = request.POST['nH2_nO2'], nN2_nO2 = request.POST['nN2_nO2'])
             charact = request.POST['characteristic']
             
             return render(request, 'display_graph.html', {'results':selected_characteristics,'charact':charact})
