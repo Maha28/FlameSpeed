@@ -7,13 +7,14 @@
        <legend>Mixture</legend> <!-- Titre du fieldset -->
    		
    			{% csrf_token %} 
-   				<select name="mixture" onclick="submit();">
+   				<select name="mixture" onchange="submit();">
+            <option value=""></option>
    				{% for entry in mixtures %}
-   					<option value="{{entry}}">{{entry}}</option>
+   					<option value="{{entry}}" selected="selected">{{entry}}</option>
    				{% endfor %}
    			</select>
           
-   			<select name="characteristic" onclick="submit();">
+   			<select name="characteristic">
    				{% for entry in characteristic_list %}
    					<option value="{{entry}}">{{entry}}</option>
    				{% endfor %}
@@ -32,7 +33,7 @@
 			   <input type="submit" />
 		  
 		   </fieldset>		   
-         </form> 
+       </form> 
        <fieldset>
        <legend>Data</legend> 
    		<table border="1" cellpadding="10" cellspacing="0">

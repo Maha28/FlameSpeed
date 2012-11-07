@@ -48,7 +48,7 @@ def data(request):
 
     if request.method == 'POST':
         #case 1: only mixture was selected
-        if 'mixture' in request.POST and not 'characteristic' in request.POST and not 'pressure_max' in request.POST and not 'pressure_min' in request.POST  :
+        if 'mixture' in request.POST and not 'characteristic' in request.POST :
             selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
             characteristic_list  = list()
             for characteristic in models.Characteristic.objects.filter(mixture = selected_mixture):
@@ -62,7 +62,7 @@ def data(request):
             return render(request, 'data.html',context) 
         
         #case 2: mixture, characteristic were selected
-        elif 'mixture' in request.POST and 'characteristic' in request.POST and not 'pressure_max' in request.POST  and not 'pressure_min' in request.POST :    
+        elif 'mixture' in request.POST and 'characteristic' in request.POST and request.POST['pressure_min'] == "":    
             selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])                          
             selected_characteristics = models.Characteristic.objects.filter(name = request.POST['characteristic'], mixture = selected_mixture)         
             
@@ -77,8 +77,8 @@ def data(request):
 
             return render(request, 'data.html',context)
               
-        #case 3: mixture, characteristic and pressure were selected 
-        elif 'mixture' in request.POST and 'characteristic' in request.POST and 'pressure_max' in request.POST and 'pressure_min' in request.POST  :
+        #case 3: mixture, characteristic and pressure were selected  
+        elif 'mixture' in request.POST and 'characteristic' in request.POST:
             selected_mixture = models.Mixture.objects.get(name = request.POST['mixture'])
             selected_characteristics = models.Characteristic.objects.filter(mixture = selected_mixture, name = request.POST['characteristic'], pressure_range = ['pressure_min','pressure_max'])
             context['data'] =  selected_characteristics
