@@ -3,26 +3,33 @@
 {%block content%}
 <section id="data">
        <form method="POST" class="databaseForm" action="{% url data %}">
-       <fieldset>
-       <legend>Mixture</legend> <!-- Titre du fieldset -->
+	       <fieldset>
+	       <legend>Mixture</legend> <!-- Titre du fieldset -->
+	   		
+	   			{% csrf_token %} 
+	   				<select name="mixture" onclick="submit();">
+	          <!--  <option value=""></option> -->
+	   				{% for entry in mixtures %}
+	   					<option value="{{entry}}" selected="selected">{{entry}}</option>
+	   				{% endfor %}
+	   			</select>
+	          
+	   			<select name="characteristic">
+	   				{% for entry in characteristic_list %}
+	   					<p><option value="{{entry}}">{{entry}}</option></p>
+	   				{% endfor %}	
+		   		</select>		
    		
-   			{% csrf_token %} 
-   				<select name="mixture" onchange="submit();">
-            <option value=""></option>
-   				{% for entry in mixtures %}
-   					<option value="{{entry}}" selected="selected">{{entry}}</option>
-   				{% endfor %}
-   			</select>
-          
-   			<select name="characteristic">
-   				{% for entry in characteristic_list %}
-   					<option value="{{entry}}">{{entry}}</option>
-   				{% endfor %}
-
-	   		</select>
-	   					   		
-       </fieldset> 
-        
+	       </fieldset> 	
+	       
+	       <fieldset>
+		   <legend>Oxydant</legend> 
+		        <select name="nN2_nO2" onchange="submit();">
+                <p><option value="3.76" selected="selected">Air </option></p>
+                <p><option value="0." selected="selected">Oxygene </option></p>
+			   </select>
+		   </fieldset>
+		   
 		   <fieldset>
 		   <legend>Pressure</legend> 
 			   <p>Enter the range of the pressure</p>
@@ -30,27 +37,43 @@
 			   <input type="number" name="pressure_min" min=1 max=100 />
 			   <p>Maximum</p>
 			   <input type="number" name="pressure_max" min=1 max=100 />
+		   </fieldset>	
+		    
+		   <fieldset>
+		   <legend>Temperature</legend> 
+			   <p>Enter the range of the temperature</p>
+			   <p>Minimum</p>
+			   <input type="number" name="temperature_min" min=100 max=1000 />
+			   <p>Maximum</p>
+			   <input type="number" name="temperature_max" min=100 max=1000 />
 			   <input type="submit" />
-		  
-		   </fieldset>		   
+		   </fieldset>	
+
        </form> 
+
        <fieldset>
        <legend>Data</legend> 
    		<table border="1" cellpadding="10" cellspacing="0">
     		<tr>
     	     	<th>Reference</th>
     		    <th>Fuel</th>
+    		    <th>Pressure</th>
+    		    <th>Temperature</th>
     		    <th>Characteristic</th>
 	    		<th>Value</th>
 	    		<th>Speed</th>
+	    		<th>Conditions</th>
 	    	</tr> 
 		    	{% for entry in data %}
 					<tr>
 				     	<td>{{entry.reference.id_ref}}</td>
 					    <td>{{entry.mixture.name}}</td>
+					    <td>{{entry.pressure}}</td>
+					    <td>{{entry.temperature}}</td>
 					    <td>{{entry.name}}</td> 
 						<td>{{entry.value}}</td>
 						<td>{{entry.speed}}</td>
+						<td>{{entry.details}}</td>
 					</tr>
 		    	{% endfor %}	
     	</table>
