@@ -8,34 +8,19 @@
            
         //Construct graph values
         {% for record in results %}
-            if (graph ["{{record.reference.source}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"] == null) {
-              graph["{{record.reference.source}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"] = [];
+            if (graph ["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"] == null) {
+              graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"] = [];
             } else {
-              graph["{{record.reference.source}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.value}} , {{record.speed}}] );
+              graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.value}} , {{record.speed}}] );
             }
         {% endfor %}
         var a=1;  
         var b=2;    
         
         {% for record in results %}
-            lab =  ["{{record.reference.source}}", "{{record.CO}}%CO", "{{record.CO2}}%CO2", "{{record.H2O}}%H2O", "{{record.N2}}%N2", "{{record.details}}"]
-            
-	        if ("{{record.CO}}" == "0" || "{{record.CO}}" == "-") {
-		        lab.splice(a, 1),
-		        b=b-1;
-
-	        }
-           
-            if ("{{record.CO2}}" == "0" || "{{record.CO2}}" == "-") {
-                lab.splice(b, 1);
-            }
-            
-            
-
-	        
-    
+	            lab =  ["{{record.reference.source}}", "{{record.pressure}}atm", "{{record.temperature}}K", "{{record.CO}}%CO", "{{record.CO2}}%CO2", "{{record.H2O}}%H2O", "{{record.details}}"]           
         {% endfor %}
-        
+                
         new_graph = [];
         series = []
         i = 0;

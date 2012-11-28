@@ -3,45 +3,54 @@
 {%block content%}
 <header></header>
 <section id="graph">
-   		<form method="POST" class="databaseForm" action="{% url graph %}">
-   			{% csrf_token %} 
-   				<select name="mixture" onclick="submit();">
-	   				{% for entry in mixtures %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-	   			</select>
-	 
-	   			<select name="characteristic" onclick="submit();">
-	   				{% for entry in characteristic_list %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-		   		</select>	   		
-		   		
-		   		<select name="pressure" onclick="submit();">
-	   				{% for entry in pressure_list %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-		   		</select>	 
-		   		
-		   		<select name="temperature" onclick="submit();">
-	   				{% for entry in temperature_list %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-		   		</select>
-		   		
-		   		<select name="nH2_nO2" onclick="submit();">
-	   				{% for entry in nH2_nO2_list %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-		   		</select>
-		   		
-		   		<select name="nN2_nO2" onclick="submit();">
-	   				{% for entry in nN2_nO2_list %}
-	   					<option value="{{entry}}">{{entry}}</option>
-	   				{% endfor %}
-		   		</select>
+       <form method="POST" class="databaseForm" action="{% url graph %}">
+           <fieldset>
+           <legend>Mixture</legend> <!-- Titre du fieldset -->
+               
+                   {% csrf_token %} 
+                       <select name="mixture" onclick="submit();">
+              <!--  <option value=""></option> -->
+                       {% for entry in mixtures %}
+                           <option value="{{entry}}" selected="selected">{{entry}}</option>
+                       {% endfor %}
+                   </select>
+              
+                   <select name="characteristic" onclick="submit();">
+                       {% for entry in characteristic_list %}
+                           <p><option value="{{entry}}">{{entry}}</option></p>
+                       {% endfor %}    
+                   </select>        
+           
+           </fieldset>     
+           
+           <fieldset>
+           <legend>Oxydant</legend> 
+                <select name="nN2_nO2">
+                <p><option value="3.76" >Air </option></p>
+                <p><option value="0" >Oxygene </option></p>
+               </select>
+           </fieldset>
+           
+           <fieldset>
+           <legend>Pressure</legend> 
+               <p>Enter the range of the pressure</p>
+               <p>Minimum</p>
+               <input type="number" name="pressure_min" min=0 max=100 />
+               <p>Maximum</p>
+               <input type="number" name="pressure_max" min=1 max=100 />
+           </fieldset>    
+            
+           <fieldset>
+           <legend>Temperature</legend> 
+               <p>Enter the range of the temperature</p>
+               <p>Minimum</p>
+               <input type="number" name="temperature_min" min=100 max=1000 />
+               <p>Maximum</p>
+               <input type="number" name="temperature_max" min=100 max=1000 />
+               <input type="submit" />
+           </fieldset>    
 
-   		</form>   
+       </form> 
 
    		<FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>      	     	        	
 </section>  
