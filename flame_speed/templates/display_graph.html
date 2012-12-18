@@ -11,14 +11,22 @@
             if (graph ["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"] == null) {
               graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"] = [];
             } else {
-              graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.value}} , {{record.speed}}] );
+                  if ('{{charact}}' == 'Pressure')
+                      {
+                      graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.pressure}} , {{record.speed}}] );
+                       }         
+                  else if ('{{charact}}' == 'Temperature')
+                      {
+                      graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.temperature}} , {{record.speed}}] );
+                       }
+                  else {
+                      graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.value}} , {{record.speed}}] );                  
+                  }  
             }
         {% endfor %}
-        var a=1;  
-        var b=2;    
         
         {% for record in results %}
-	            lab =  ["{{record.reference.source}}", "{{record.pressure}}atm", "{{record.temperature}}K", "{{record.CO}}%CO", "{{record.CO2}}%CO2", "{{record.H2O}}%H2O", "{{record.details}}"]           
+                lab =  ["{{record.reference.source}}", "{{record.pressure}}atm", "{{record.temperature}}K", "{{record.CO}}%CO", "{{record.CO2}}%CO2", "{{record.H2O}}%H2O", "{{record.details}}"]           
         {% endfor %}
                 
         new_graph = [];
@@ -39,31 +47,31 @@
        console.log(new_graph);
        
        graph_options = {
-            title:'Flame speed {{charact}}',
+            title:'Flame speed VS {{charact}}',
             legend:{show:true},
             axes: {
                   xaxis: {label: "{{charact}}",},
                   yaxis: {
                          label: "SL(m/s)",
                          //tickOptions:{
-			           	  //          formatString:'%.2Pm/s'
-			              //}
+                             //          formatString:'%.2Pm/s'
+                          //}
                   }
                   },            
             series : series,
             highlighter: {
-	            show: true,
-	            sizeAdjust: 7.5,
-	            //useAxesFormatters: false,
-	            //tooltipFormatString: '%.2Pm/s'                     
+                show: true,
+                sizeAdjust: 7.5,
+                //useAxesFormatters: false,
+                //tooltipFormatString: '%.2Pm/s'                     
             },      
        }
 
-      $.jqplot('chartdiv', new_graph, graph_options);
-       
-
+      $.jqplot('chartdiv', new_graph, graph_options);      
+     
      });
+
    </script>
-	<div id="chartdiv" style="height:800px;width:100%;"></div>
-	<FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
+    <div id="chartdiv" style="height:800px;width:100%;"></div>
+    <FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 {%endblock%}
