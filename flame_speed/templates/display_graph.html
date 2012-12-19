@@ -5,12 +5,16 @@
 
       $(function () {
         var graph = {};
+        var lab_initial = [];
+        var a = 'False';
            
-        //Construct graph values
+        //Construct graph values           
+        
         {% for record in results %}
             if (graph ["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"] == null) {
               graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"] = [];
             } else {
+                  a = 'True';
                   if ('{{charact}}' == 'Pressure')
                       {
                       graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.pressure}} , {{record.speed}}] );
@@ -25,9 +29,27 @@
             }
         {% endfor %}
         
+        if(a == 'False')  
+		$(".message").text("Data no available");
+        
         {% for record in results %}
-                lab =  ["{{record.reference.source}}", "{{record.pressure}}atm", "{{record.temperature}}K", "{{record.CO}}%CO", "{{record.CO2}}%CO2", "{{record.H2O}}%H2O", "{{record.details}}"]           
+                if ("{{record.reference.source}}" != '-') lab_reference = "{{record.reference.source}}, "; else lab_reference = "";
+        		if ("{{record.pressure}}" != '-') lab_pressure = "{{record.pressure}}atm, "; else lab_pressure = "";
+        		if ("{{record.temperature}}" != '-') lab_temperature = "{{record.temperature}}K, "; else lab_temperature = "";
+        		if (("{{record.CO}}" != '-')&&("{{record.CO}}" != '0')) lab_CO = "{{record.CO}}%CO, "; else lab_CO = "";
+        		if (("{{record.CO2}}" != '-')&&("{{record.CO2}}" != '0')) lab_CO2 = "{{record.CO2}}%CO2, "; else lab_CO2 = "";
+        		if (("{{record.H2O}}" != '-')&&("{{record.H2O}}" != '0')) lab_H2O = "{{record.H2O}}%H2O, "; else lab_H2O = "";
+        		if (("{{record.N2}}" != '-')&&("{{record.N2}}" != '0')) lab_N2 = "{{record.N2}}%N2, "; else lab_N2 = "";
+        		if ("{{record.details}}" != '-') lab_details = "{{record.details}}, "; else lab_details = ""; 
+
+                lab_initial.push(lab_reference + lab_pressure + lab_temperature + lab_CO + lab_CO2 + lab_H2O + lab_N2 + lab_details);  
+
         {% endfor %}
+        
+        var lab = [];
+        $.each(lab_initial, function(i, el){
+		    if($.inArray(el, lab) === -1) lab.push(el);
+		});
                 
         new_graph = [];
         series = []
@@ -35,7 +57,7 @@
         for (var key in graph) {
             new_graph[i] = graph[key];
             series.push( {     
-                   label: lab,
+                   label: lab[i],
                    showLine: false,
                    //pointLabels: {show: true},
                    markerOptions: { size: 7, style:"x"}
@@ -72,6 +94,7 @@
      });
 
    </script>
+    <div class='message'></div>
     <div id="chartdiv" style="height:800px;width:100%;"></div>
     <FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 {%endblock%}

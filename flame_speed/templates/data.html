@@ -34,7 +34,7 @@
            <legend>Pressure</legend> 
                <p>Enter the range of pressure</p>
                <p>Minimum</p>
-               <input type="number" name="pressure_min" min=0 max=100 />
+               <input type="number" name="pressure_min" min=1 max=100 />
                <p>Maximum</p>
                <input type="number" name="pressure_max" min=1 max=100 />
            </fieldset>    
@@ -43,14 +43,13 @@
            <legend>Temperature</legend> 
                <p>Enter the range of temperature</p>
                <p>Minimum</p>
-               <input type="number" name="temperature_min" min=100 max=1000 />
+               <input type="number" name="temperature_min" min=273 max=1000 />
                <p>Maximum</p>
-               <input type="number" name="temperature_max" min=100 max=1000 />
+               <input type="number" name="temperature_max" min=273 max=1000 />
                <input type="submit" />
            </fieldset>    
 
        </form> 
-
        <fieldset>
        <legend>Data</legend> 
            <table border="1" cellpadding="10" cellspacing="0">
@@ -76,8 +75,9 @@
                         <td>{{entry.speed}}</td>
                         <td>{{entry.details}}</td>
                     </tr>
-                {% endfor %}    
+                {% endfor %}     
         </table>
+
         </fieldset>
 
  <FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>                                  
