@@ -17,7 +17,14 @@
                   a = 'True';
                   if ('{{charact}}' == 'Pressure')
                       {
-                      graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.pressure}} , {{record.speed}}] );
+                      if ('{{record.name}}' == 'Pressure')
+	                      {
+	                      graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.value}} , {{record.speed}}] );
+                          }
+                      else if ('{{record.name}}' != 'Pressure')
+                          {
+                          graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].push( [ {{record.pressure}} , {{record.speed}}] );
+                           }  
                        }         
                   else if ('{{charact}}' == 'Temperature')
                       {
@@ -34,7 +41,7 @@
         
         {% for record in results %}
                 if ("{{record.reference.source}}" != '-') lab_reference = "{{record.reference.source}}, "; else lab_reference = "";
-        		if ("{{record.pressure}}" != '-') lab_pressure = "{{record.pressure}}atm, "; else lab_pressure = "";
+        		if ("{{record.pressure}}" != 'range') lab_pressure = "{{record.pressure}}atm, "; else lab_pressure = "";
         		if ("{{record.temperature}}" != '-') lab_temperature = "{{record.temperature}}K, "; else lab_temperature = "";
         		if (("{{record.CO}}" != '-')&&("{{record.CO}}" != '0')) lab_CO = "{{record.CO}}%CO, "; else lab_CO = "";
         		if (("{{record.CO2}}" != '-')&&("{{record.CO2}}" != '0')) lab_CO2 = "{{record.CO2}}%CO2, "; else lab_CO2 = "";
