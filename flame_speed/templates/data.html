@@ -50,35 +50,6 @@
            </fieldset>    
 
        </form> 
-       <fieldset>
-       <legend>Data</legend> 
-           <table border="1" cellpadding="10" cellspacing="0">
-            <tr>
-                 <th>Reference</th>
-                <th>Fuel</th>
-                <th>Pressure</th>
-                <th>Temperature</th>
-                <th>Characteristic</th>
-                <th>Value</th>
-                <th>Speed</th>
-                <th>Conditions</th>
-            </tr> 
-            
-                {% for entry in data %}
-                    <tr>
-                         <td>{{entry.reference.id_ref}}</td>
-                        <td>{{entry.mixture.name}}</td>
-                        <td>{{entry.pressure}}</td>
-                        <td>{{entry.temperature}}</td>
-                        <td>{{entry.name}}</td> 
-                        <td>{{entry.value}}</td>
-                        <td>{{entry.speed}}</td>
-                        <td>{{entry.details}}</td>
-                    </tr>
-                {% endfor %}     
-        </table>
-
-        </fieldset>
 
  <FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>                                  
 </section>         
