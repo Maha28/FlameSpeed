@@ -47,7 +47,10 @@
                <input type="number" name="temperature_min" min=273 max=1000 />
                <p>Maximum</p>
                <input type="number" name="temperature_max" min=273 max=1000 />
-               <input type="submit" />
+               <p>
+               <button class="btn btn-small btn-primary" type="submit">Submit</button>
+               <button class="btn btn-small btn-primary" type="button" onClick="history.go(-1);return true;">Back</button>
+               </p>
            </fieldset>    
 
        </form> 
@@ -79,9 +82,7 @@
                     </tr>
                 {% endfor %}     
            </table>
-        </fieldset>
-       
-   		<FORM><INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>      	     	        	
+        </fieldset>     	     	        	
 </section>  
 
 

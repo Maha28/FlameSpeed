@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <title>{% block title %}{% endblock title %}</title>
 
-<link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" type="text/css">
+<!--<link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" type="text/css">-->
+<link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/visualize.js"></script>
 <link href="{{ STATIC_URL }}css/jquery.jqplot.min.css" rel="stylesheet" type="text/css">
@@ -19,32 +22,40 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.barRenderer.min.js"></script>
 
 </head>
-<body>
-<div id="wrapper">
-<header id="mainHeader">
-  <hgroup>
-    <h1>Flame Speed</h1>
-  </hgroup>
-    <nav id="mainNav">
-    <h1>Main page navigation</h1>
-    <ul id="siteNav">
-      <li><a href="/home">Home</a></li>
-      <li><a href="/data">Database search</a></li>
-      <li><a href="/graph">Graph</a></li>
-      <li><a href="/mixture">Mixtures</a></li> 
-      <li><a href="/characteristic">Characteristic</a></li>
-      <li><a href="/reference" class="last">References</a></li>
-    </ul>
-  </nav>
-</header>
-  <section id="content">
-    <header>{% include "messages.html" %}</header>
-    {% block content %}{% endblock content %}
-  </section>
-  <footer id="pageFooter">
-  <p>&copy;copyright 2012 Maha Manoubi</p>
-  <p><a href="#">legal</a> | <a href="#">privacy</a> </p>
-  </footer>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      	<nav id="mainNav">
+		<!--<h1>Main page navigation</h1>-->
+		<ul class="unstyled" id="siteNav">
+		  <li class="active"><a href="/home"><i class="icon-home"></i> Home</a></li>
+		  <a href="/data"><i class="icon-search"></i>Database search</a></li>
+		  <li><a href="/graph"><i class="icon-picture"></i>Graph</a></li>
+		  <li><a href="/mixture"><i class="icon-th-list"></i>Mixtures</a></li> 
+		  <li><a href="/characteristic"><i class="icon-book"></i> All the data</a></li>
+		  <li><a href="/reference" class="last"><i class="icon-folder-open"></i>References</a></li> 
+		</ul>
+		  </nav>
+    </div>
+    <div class="span10">
+		<body>		
+		<!--<div id="wrapper">-->
+		<header id="mainHeader">
+		  <hgroup>
+		<h1>Flame Speed Database</h1>
+		  </hgroup>
+		</header>
+		  <section id="content">
+		<header>{% include "messages.html" %}</header>
+		    {% block content %}{% endblock content %}
+		  </section>
+		  <footer id="pageFooter">
+		  <p>&copy;copyright 2012 Maha Manoubi</p>
+		  <p><a href="#">legal</a> | <a href="#">privacy</a> </p>
+		  </footer>
+		</div>
+		</body>
+    </div>
+  </div>
 </div>
-</body>
 </html>
