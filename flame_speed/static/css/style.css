@@ -8,11 +8,11 @@ html, body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -42px; /* the bottom margin is the negative value of the footer's height */
+  margin: 0 auto -20px; /* the bottom margin is the negative value of the footer's height */
 }
 .footer, .push {
   text-align: center;
-  height: 42px; /* .push must be the same height as .footer */
+  height: 20px; /* .push must be the same height as .footer */
 }
 
 /*
