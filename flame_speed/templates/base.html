@@ -4,25 +4,26 @@
 <meta charset="UTF-8">
 <title>{% block title %}{% endblock title %}</title>
 
-<!--<link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" type="text/css">-->
 <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
 <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" media="screen">
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/visualize.js"></script>
-<link href="{{ STATIC_URL }}css/jquery.jqplot.min.css" rel="stylesheet" type="text/css">
+<link href="{{ STATIC_URL }}css/jquery.jqplot.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jqplot.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.pointLabels.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.highlighter.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.highlighter.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.cursor.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.dateAxisRenderer.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.canvasAxisLabelRenderer.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.categoryAxisRenderer.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.barRenderer.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.cursor.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jqplot.dateAxisRenderer.min.js"></script>
 
-</head>
+
 <body>
 	<div class="wrapper">
 	    <div class="navbar navbar-inverse navbar-fixed-top">
@@ -33,7 +34,7 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <a class="brand" href="#">Flame Speed</a>
+	          <a class="brand" href="#">Flame Speed Project</a>
 	          <div class="nav-collapse collapse">
 	            <p class="navbar-text pull-right">
 	              Logged in as <a href="#" class="navbar-link">Username</a>
@@ -52,30 +53,35 @@
 	      <div class="row-fluid">
 	        <div class="span3">
 	          <div class="well sidebar-nav">
-	            <ul class="nav nav-list">
+	            <!--<ul class="nav nav-list">-->
+	            <ul class="nav nav-list" role="menu" aria-labelledby="dropdownMenu">
 					  <li class="active"><a href="/home"><i class="icon-home"></i> Home</a></li>
-					  <li><a href="/data"><i class="icon-search"></i>Database search</a></li>
-					  <li><a href="/graph"><i class="icon-picture"></i>Graph</a></li>
-					  <li><a href="/mixture"><i class="icon-th-list"></i>Mixtures</a></li> 
-					  <li><a href="/characteristic"><i class="icon-book"></i> All the data</a></li>
-					  <li><a href="/reference" class="last"><i class="icon-folder-open"></i>References</a></li> 
+					  <li><a tabindex="-1" href="/data"><i class="icon-search"></i>Database search</a></li>
+					  <li><a tabindex="-1" href="/graph"><i class="icon-picture"></i>Graph</a></li>
+					  <li><a tabindex="-1" href="/mixture"><i class="icon-th-list"></i>Mixtures</a></li> 
+					  <li><a tabindex="-1" href="/characteristic"><i class="icon-book"></i> All the data</a></li>
+					  <li><a tabindex="-1" href="/reference" class="last"><i class="icon-folder-open"></i>References</a></li> 
 	            </ul>
 	          </div><!--/.well -->
 	        </div><!--/span-->
 	        <div class="span9">
-
-	          <div class="row-fluid">
+	            <div class="bodydesign">
+	            <div class="row-fluid">
+	            <h1>Flame Speed Database</h1>
 				<section id="content">
 				<header>{% include "messages.html" %}</header>
 				    {% block content %}{% endblock content %}
 				  </section>
+				</div>
+	           </div>
+               </div>
 	          </div><!--/row-->
 	        </div><!--/span-->
 	      </div><!--/row-->
 		</div>
 		<div class="push"></div>
 
-	</div>
+
 
 	<div class="footer">
 		<p>&copy; 2013 Maha Manoubi</p>

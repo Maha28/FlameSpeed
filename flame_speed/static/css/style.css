@@ -10,21 +10,44 @@ html, body {
   height: 100%;
   margin: 0 auto -20px; /* the bottom margin is the negative value of the footer's height */
 }
+.bodydesign {
+  padding: 60px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.bodydesign h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  color: inherit;
+  letter-spacing: -1px;
+}
+.bodydesign h2 {
+  margin-bottom: 0;
+  font-size: 20px;
+  line-height: 1;
+  color: inherit;
+  letter-spacing: -1px;
+}
+.bodydesign li {
+  line-height: 30px;
+}
 .footer, .push {
   text-align: center;
   height: 20px; /* .push must be the same height as .footer */
 }
 
-/*
-
-Sticky Footer by Ryan Fait
-http://ryanfait.com/
-
-*/
-
 body {
   padding-top: 60px;
   padding-bottom: 40px;
+  background-image: url("static/img/gris.jpg"); // added by Maha
 }
 .sidebar-nav {
   padding: 9px 0;

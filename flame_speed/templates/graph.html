@@ -33,25 +33,36 @@
            
            <fieldset>
            <legend>Pressure</legend> 
-               <p>Enter the range of the pressure</p>
-               <p>Minimum</p>
-               <input type="number" name="pressure_min" min=1 max=100 />
-               <p>Maximum</p>
-               <input type="number" name="pressure_max" min=1 max=100 />
+           <ul>
+               <p>Enter the range of pressure</p>
+               <DIV style="float: left; width: 50%">
+	               <p>Minimum</p>
+	               <input type="number" name="pressure_min" min=1 max=100 />
+	           </DIV>
+               <DIV style="float: left; width: 50%">
+	               <p>Maximum</p>
+	               <input type="number" name="pressure_max" min=1 max=100 />
+               </DIV>
+           </ul>
            </fieldset>    
             
            <fieldset>
-           <legend>Temperature</legend> 
-               <p>Enter the range of the temperature</p>
-               <p>Minimum</p>
-               <input type="number" name="temperature_min" min=273 max=1000 />
-               <p>Maximum</p>
-               <input type="number" name="temperature_max" min=273 max=1000 />
-               <p>
+           <legend>Temperature</legend>
+           <ul>
+               <p>Enter the range of temperature</p>
+               <DIV style="float: left; width: 50%">
+	               <p>Minimum</p>
+	               <input type="number" name="temperature_min" min=273 max=1000 />
+               </DIV>
+               <DIV style="float: left; width: 50%">
+	               <p>Maximum</p>
+	               <input type="number" name="temperature_max" min=273 max=1000 />
+               </DIV>
                <button class="btn btn-small btn-primary" type="submit">Submit</button>
                <button class="btn btn-small btn-primary" type="button" onClick="history.go(-1);return true;">Back</button>
                </p>
-           </fieldset>    
+           </ul>
+           </fieldset>  
 
        </form> 
        

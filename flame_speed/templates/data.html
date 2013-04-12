@@ -32,26 +32,61 @@
            
            <fieldset>
            <legend>Pressure</legend> 
+           <ul>
                <p>Enter the range of pressure</p>
-               <p>Minimum</p>
-               <input type="number" name="pressure_min" min=1 max=100 />
-               <p>Maximum</p>
-               <input type="number" name="pressure_max" min=1 max=100 />
+               <DIV style="float: left; width: 50%">
+	               <p>Minimum</p>
+	               <input type="number" name="pressure_min" min=1 max=100 />
+	           </DIV>
+               <DIV style="float: left; width: 50%">
+	               <p>Maximum</p>
+	               <input type="number" name="pressure_max" min=1 max=100 />
+               </DIV>
+           </ul>
            </fieldset>    
             
            <fieldset>
-           <legend>Temperature</legend> 
+           <legend>Temperature</legend>
+           <ul>
                <p>Enter the range of temperature</p>
-               <p>Minimum</p>
-               <input type="number" name="temperature_min" min=273 max=1000 />
-               <p>Maximum</p>
-               <input type="number" name="temperature_max" min=273 max=1000 />
-               <p>
+               <DIV style="float: left; width: 50%">
+	               <p>Minimum</p>
+	               <input type="number" name="temperature_min" min=273 max=1000 />
+               </DIV>
+               <DIV style="float: left; width: 50%">
+	               <p>Maximum</p>
+	               <input type="number" name="temperature_max" min=273 max=1000 />
+               </DIV>
                <button class="btn btn-small btn-primary" type="submit">Submit</button>
                <button class="btn btn-small btn-primary" type="button" onClick="history.go(-1);return true;">Back</button>
                </p>
+           </ul>
            </fieldset>    
-
-       </form>                              
+       </form>  
+            <table border="1" cellpadding="10" cellspacing="0">      
+            <tr>
+                 <th>Reference</th>
+                <th>Fuel</th>
+                <th>Pressure</th>
+                <th>Temperature</th>
+                <th>Characteristic</th>
+                <th>Value</th>
+                <th>Speed</th>
+                <th>Conditions</th>
+            </tr> 
+            
+                {% for entry in data %}
+                    <tr>
+                         <td>{{entry.reference.id_ref}}</td>
+                        <td>{{entry.mixture.name}}</td>
+                        <td>{{entry.pressure}}</td>
+                        <td>{{entry.temperature}}</td>
+                        <td>{{entry.name}}</td> 
+                        <td>{{entry.value}}</td>
+                        <td>{{entry.speed}}</td>
+                        <td>{{entry.details}}</td>
+                    </tr>
+                {% endfor %}     
+           </table>                            
 </section>         
 {%endblock%}

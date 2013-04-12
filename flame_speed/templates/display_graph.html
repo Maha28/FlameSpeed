@@ -79,7 +79,14 @@
             title:'Flame speed VS {{charact}}',
             legend:{show:true},
             axes: {
-                  xaxis: {label: "{{charact}}",},
+                  xaxis: {
+                          label: "{{charact}}", 
+                          renderer:$.jqplot.dateAxisRenderer,                
+		                  padMax: 0,
+		                  padMin: 1.5,
+		                  //min: 0,
+		                  autoscale: true
+		                  },
                   yaxis: {
                          label: "SL(m/s)",
                          //tickOptions:{

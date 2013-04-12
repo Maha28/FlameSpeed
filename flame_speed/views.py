@@ -46,6 +46,7 @@ def reference(request):
 
 def data(request):
     context = {}
+    graph={}
     global selected_characteristics1
     selected_characteristics1 = []
     global selected_characteristics2
@@ -126,9 +127,18 @@ def data(request):
                 selected_characteristics2 = models.Characteristic.objects.filter(mixture = request.POST['mixture'], name = request.POST['characteristic'], nN2_nO2 = request.POST['nN2_nO2'], pressure__range= [pressure_min,pressure_max], temperature__range=[temperature_min,temperature_max])
                  
             selected_characteristics = sorted(chain(selected_characteristics1, selected_characteristics2))
+            
             context['data'] = selected_characteristics
             
-        return render(request, 'data.html',context)  
+            return render(request, 'data.html',context) 
+
+#           for record in selected_characteristics:
+#                if (graph[record.reference.source, record.pressure, record.temperature, record.CO, record.CO2, record.H2O, record.N2, record.details] == null):                
+#                    graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"] = []
+#                else:
+#                    graph["{{record.reference.source}}, {{record.pressure}}, {{record.temperature}}, {{record.CO}}, {{record.CO2}}, {{record.H2O}}, {{record.N2}}, {{record.details}}"].append( [ {{record.value}} , {{record.speed}}] )
+
+#        return render(request, 'data.html',{'data':selected_characteristics,'data_organised':graph})'''
 
     else:
         mixtures  = list()
