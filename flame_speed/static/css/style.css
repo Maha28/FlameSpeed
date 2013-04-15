@@ -4,6 +4,14 @@
 html, body {
   height: 100%;
 }
+/*
+.span3{
+  opacity:0.9;
+}
+.span9{
+  opacity:0.9;
+}
+*/
 .wrapper {
   min-height: 100%;
   height: auto !important;
@@ -47,7 +55,7 @@ html, body {
 body {
   padding-top: 60px;
   padding-bottom: 40px;
-  background-image: url("static/img/gris.jpg"); // added by Maha
+  //background-image: url("/static/img/Back_FS.png"); // added by Maha
 }
 .sidebar-nav {
   padding: 9px 0;

@@ -12,6 +12,7 @@
 	    		<th>Pressure(atm)</th>
 	    		<th>Temperature(K)</th>
 	    		<th>Mixture</th>
+	    		<th>Details</th>
     		</tr>    	
     	{% for entry in characteristics %}
 			<tr>
@@ -22,6 +23,7 @@
 				<td>{{entry.pressure}}</td>
 				<td>{{entry.temperature}}</td>
 				<td>{{entry.mixture.name}}</td>
+				<td>{{entry.details}}</td>
 			</tr>
     	{% endfor %}	
     	</table>
