@@ -59,25 +59,18 @@
                </DIV>
                </p>
            </ul>
-           <button class="btn btn-small btn-primary" type="submit">Submit</button>
+           <button class="btn btn-small btn-primary" type="submit" id="show" >Submit</button>
            <button class="btn btn-small btn-primary" type="button" onClick="history.go(-1);return true;">Back</button>
            </fieldset>    
        </form>  
-            <table border="1" cellpadding="10" cellspacing="0">      
-            <tr>
-                 <th>Reference</th>
-                <th>Fuel</th>
-                <th>Pressure</th>
-                <th>Temperature</th>
-                <th>Characteristic</th>
-                <th>Value</th>
-                <th>Speed</th>
-                <th>Conditions</th>
-            </tr> 
-            
+       
+       
+	    <table>
+		<tbody>
+            <table>        
                 {% for entry in data %}
                     <tr>
-                         <td>{{entry.reference.id_ref}}</td>
+                        <td>{{entry.reference.id_ref}}</td>
                         <td>{{entry.mixture.name}}</td>
                         <td>{{entry.pressure}}</td>
                         <td>{{entry.temperature}}</td>
@@ -87,6 +80,27 @@
                         <td>{{entry.details}}</td>
                     </tr>
                 {% endfor %}     
-           </table>                            
+           </table>   		
+		</tbody>	
+	    </table>
+
+	    <script type="text/javascript">
+			$(document).ready(function()
+			{
+			    $("table").hide();
+			    $("button").click(function()
+			    {
+			        $("table").show();
+			    });			
+			});
+			
+			$('#table-display').hide();
+			$('.button-show').on('click', function() {
+			    if ($('option:selected').text() === 'Display') {
+			        $('#table-koloman').hide();
+			        $('#table-display').show();
+			    }
+			});​
+        </script>                           
 </section>         
 {%endblock%}
