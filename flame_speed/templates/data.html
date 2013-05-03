@@ -59,15 +59,23 @@
                </DIV>
                </p>
            </ul>
-           <button class="btn btn-small btn-primary" type="submit" id="show" >Submit</button>
+           <button class="button-show" type="submit" id="show" >Submit</button>
            <button class="btn btn-small btn-primary" type="button" onClick="history.go(-1);return true;">Back</button>
            </fieldset>    
        </form>  
-       
-       
-	    <table>
+              
 		<tbody>
-            <table>        
+            <table id="table-display"> 
+		            <tr>
+		                <th>Reference</th>
+		                <th>Fuel</th>
+		                <th>Pressure</th>
+		                <th>Temperature</th>
+		                <th>Characteristic</th>
+		                <th>Value</th>
+		                <th>Speed</th>
+		                <th>Conditions</th>
+		            </tr>        
                 {% for entry in data %}
                     <tr>
                         <td>{{entry.reference.id_ref}}</td>
@@ -82,25 +90,14 @@
                 {% endfor %}     
            </table>   		
 		</tbody>	
-	    </table>
 
 	    <script type="text/javascript">
-			$(document).ready(function()
-			{
-			    $("table").hide();
-			    $("button").click(function()
-			    {
-			        $("table").show();
-			    });			
-			});
-			
+	    
 			$('#table-display').hide();
 			$('.button-show').on('click', function() {
-			    if ($('option:selected').text() === 'Display') {
-			        $('#table-koloman').hide();
-			        $('#table-display').show();
-			    }
-			});​
+			        $('#table-display').show(); 
+			});
+			​​
         </script>                           
 </section>         
 {%endblock%}
