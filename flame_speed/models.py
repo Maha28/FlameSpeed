@@ -5,7 +5,7 @@ RefFile_PATH = "/home/maha/workspace/FlameSpeed/References"
 
 class ReferenceManager(models.Manager):
     def clean(self,List):
-        return([x.strip() for x in List])
+        return([x.strip() for x in List])# #I added this
     
     def populate_reference(self):
         RefFile = open(RefFile_PATH, 'r')
