@@ -2,7 +2,7 @@
 {%block title%}Data{%endblock%}
 {%block content%}
 <section id="data">
-       <form method="POST" class="databaseForm" action="{% url data %}">
+       <form method="POST" class="databaseForm" action="{% url "data" %}">
            <fieldset>
            <legend>Mixture</legend> <!-- Titre du fieldset -->
                
@@ -23,7 +23,7 @@
            </fieldset>     
            
            <fieldset>
-           <legend>Oxydant</legend> 
+           <legend>Oxidizer</legend> 
                 <select name="nN2_nO2">
                 <p><option value="3.76" >Air </option></p>
                 <p><option value="0" >Oxygene </option></p>
@@ -33,7 +33,7 @@
            <fieldset>
            <legend>Pressure</legend> 
            <ul>
-               <p>Enter the range of pressure</p>
+               <p>Enter the range of pressure (atm)</p>
                <DIV style="float: left; width: 50%">
 	               <p>Minimum</p>
 	               <input type="number" name="pressure_min" min=0 max=100 />
@@ -48,7 +48,7 @@
            <fieldset>
            <legend>Temperature</legend>
            <ul>
-               <p>Enter the range of temperature</p>
+               <p>Enter the range of temperature (K)</p>
                <DIV style="float: left; width: 50%">
 	               <p>Minimum</p>
 	               <input type="number" name="temperature_min" min=273 max=1000 />
@@ -59,38 +59,10 @@
                </DIV>
                </p>
            </ul>
-           <button class="button-show" type="submit" id="show" >Submit</button>
+           <button class="btn btn-small btn-primary" type="submit">Submit</button>
            <button class="btn btn-small btn-primary" type="button" onClick="history.go(-1);return true;">Back</button>
            </fieldset>    
        </form>  
-              
-		<tbody>
-            <table id="table-display"> 
-		            <tr>
-		                <th>Reference</th>
-		                <th>Fuel</th>
-		                <th>Pressure</th>
-		                <th>Temperature</th>
-		                <th>Characteristic</th>
-		                <th>Value</th>
-		                <th>Speed</th>
-		                <th>Conditions</th>
-		            </tr>        
-                {% for entry in data %}
-                    <tr>
-                        <td>{{entry.reference.id_ref}}</td>
-                        <td>{{entry.mixture.name}}</td>
-                        <td>{{entry.pressure}}</td>
-                        <td>{{entry.temperature}}</td>
-                        <td>{{entry.name}}</td> 
-                        <td>{{entry.value}}</td>
-                        <td>{{entry.speed}}</td>
-                        <td>{{entry.details}}</td>
-                    </tr>
-                {% endfor %}     
-           </table>   		
-		</tbody>	
-
 	    <script type="text/javascript">
 	    
 			$('#table-display').hide();

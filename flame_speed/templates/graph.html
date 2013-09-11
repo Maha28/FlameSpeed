@@ -3,7 +3,7 @@
 {%block content%}
 <header></header>
 <section id="graph">
-       <form method="POST" class="databaseForm" action="{% url graph %}">
+       <form method="POST" class="databaseForm" action="{% url "graph" %}">
            <fieldset>
            <legend>Mixture</legend> <!-- Titre du fieldset -->
                
@@ -24,7 +24,7 @@
            </fieldset>     
            
            <fieldset>
-           <legend>Oxydant</legend> 
+           <legend>Oxidizer</legend> 
                 <select name="nN2_nO2">
                 <p><option value="3.76" >Air </option></p>
                 <p><option value="0" >Oxygene </option></p>
@@ -34,7 +34,7 @@
            <fieldset>
            <legend>Pressure</legend> 
            <ul>
-               <p>Enter the range of pressure</p>
+               <p>Enter the range of pressure (atm)</p>
                <DIV style="float: left; width: 50%">
 	               <p>Minimum</p>
 	               <input type="number" name="pressure_min" min=0 max=100 />
@@ -49,7 +49,7 @@
            <fieldset>
            <legend>Temperature</legend>
            <ul>
-               <p>Enter the range of temperature</p>
+               <p>Enter the range of temperature (K)</p>
                <DIV style="float: left; width: 50%">
 	               <p>Minimum</p>
 	               <input type="number" name="temperature_min" min=273 max=1000 />
@@ -65,33 +65,6 @@
            </fieldset>  
 
        </form> 
-       
-       <fieldset>
-       <legend>Data</legend> 
-           <table border="1" cellpadding="10" cellspacing="0">      
-            <tr>
-                 <th>Reference</th>
-                <th>Fuel</th>
-                <th>Pressure</th>
-                <th>Temperature</th>
-                <th>Characteristic</th>
-                <th>Value</th>
-                <th>Speed</th>
-                <th>Conditions</th>
-            </tr> 
-            
-                {% for entry in data %}
-                    <tr>
-                         <td>{{entry.reference.id_ref}}</td>
-                        <td>{{entry.mixture.name}}</td>
-                        <td>{{entry.pressure}}</td>
-                        <td>{{entry.temperature}}</td>
-                        <td>{{entry.name}}</td> 
-                        <td>{{entry.value}}</td>
-                        <td>{{entry.speed}}</td>
-                        <td>{{entry.details}}</td>
-                    </tr>
-                {% endfor %}     
            </table>
         </fieldset>     	     	        	
 </section>  

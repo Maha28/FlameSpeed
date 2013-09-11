@@ -19,12 +19,13 @@
 			<tr>
 			    <td>{{entry.reference.id_ref}}</td>
 				<td>{{entry.name}}</td>
-				<td>{{entry.value}}</td>
-				<td>{{entry.speed}}</td>
+				<td>{{entry.value|floatformat:"2" }}</td>
+				<td>{{entry.speed|floatformat:"2" }}</td>
 				<td>{{entry.pressure}}</td>
 				<td>{{entry.temperature}}</td>
 				<td>{{entry.mixture.name}}</td>
 				<td>{{entry.details}}</td>
+				<td>{{entry.reference.id_ref}}</td>
 			</tr>
     	{% endfor %}	
     	</table>

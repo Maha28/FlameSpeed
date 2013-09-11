@@ -130,7 +130,7 @@ def data(request):
             
             context['data'] = selected_characteristics
             
-            return render(request, 'data.html',context) 
+            return render(request, 'display_data.html',context) 
 
 #           for record in selected_characteristics:
 #                if (graph[record.reference.source, record.pressure, record.temperature, record.CO, record.CO2, record.H2O, record.N2, record.details] == null):                
@@ -247,3 +247,6 @@ def graph(request):
 #Templates
 def display_graph(request):
     return render(request, 'display_graph.html',context)
+
+def display_data(request):
+    return render(request, 'display_data.html',context)

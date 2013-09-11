@@ -1,7 +1,7 @@
 from django.db import models
 import glob, os, pdb
-PROJECT_PATH = "/home/maha/workspace/FlameSpeed/Data/"
-RefFile_PATH = "/home/maha/workspace/FlameSpeed/References"
+PROJECT_PATH = "/users/Maha/Documents/FlameSpeed/Data/"
+RefFile_PATH = "/users/Maha/Documents/FlameSpeed/References"
 
 class ReferenceManager(models.Manager):
     def clean(self,List):
